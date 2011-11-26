@@ -86,7 +86,6 @@
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
-    <None Include="Service References\ImageReference\item.disco" />
     <None Include="Service References\ImageReference\configuration91.svcinfo" />
     <None Include="Service References\ImageReference\configuration.svcinfo" />
     <None Include="Service References\ImageReference\Reference.svcmap">
@@ -94,11 +93,11 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="ServiceReferences.ClientConfig" />
-    <None Include="Service References\ImageReference\ImageService.wsdl" />
-    <None Include="Service References\ImageReference\item.xsd">
+    <None Include="Service References\ImageReference\service.wsdl" />
+    <None Include="Service References\ImageReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ImageReference\item1.xsd">
+    <None Include="Service References\ImageReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

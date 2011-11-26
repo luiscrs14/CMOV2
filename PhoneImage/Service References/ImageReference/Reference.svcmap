@@ -20,13 +20,12 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.2:8732/Design_Time_Addresses/Server/ImageService/" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://192.168.1.2:8732/Design_Time_Addresses/Server/ImageService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ImageService.wsdl" MetadataType="Wsdl" ID="75c20aa9-12f7-4aca-b90c-b24b53e0823a" SourceId="1" SourceUrl="http://192.168.1.2:8732/Design_Time_Addresses/Server/ImageService/?wsdl" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="3ce2ac7b-f23b-4618-b7a7-e8321cba1755" SourceId="1" SourceUrl="http://192.168.1.2:8732/Design_Time_Addresses/Server/ImageService/?disco" />
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="5cf612d9-ec8c-4520-b460-24b3282f817c" SourceId="1" SourceUrl="http://192.168.1.2:8732/Design_Time_Addresses/Server/ImageService/?xsd=xsd1" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="755c6f1a-5d01-46be-971e-b7f78f138f1a" SourceId="1" SourceUrl="http://192.168.1.2:8732/Design_Time_Addresses/Server/ImageService/?xsd=xsd0" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="2db9fb80-f531-4510-bb3d-bfb98c905f2f" SourceId="1" SourceUrl="http://192.168.1.2:8732/Design_Time_Addresses/Server/ImageService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="315ac3b6-d516-417b-b2e6-a94b46238d14" SourceId="1" SourceUrl="http://192.168.1.2:8732/Design_Time_Addresses/Server/ImageService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="e8bd37ec-f935-429d-9b3a-1db3c1c579cf" SourceId="1" SourceUrl="http://192.168.1.2:8732/Design_Time_Addresses/Server/ImageService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

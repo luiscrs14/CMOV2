@@ -5,19 +5,20 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.IO;
+using System.Net;
 
 namespace ImageServer {
   public class ImageService : IImageService {
-      Uri url;
+    static Uri url;
     public double DoWork() {
       Console.WriteLine("DoWork() called");
       return 3.14159;
     }
 
-    public String SetUrl(Uri url)
+    public String SetUrl(Uri url1)
     {
         Console.WriteLine("SetUrl(" + url + ") called");
-        this.url = url;
+        url = url1;
         return "URL set";
         
     }
@@ -46,6 +47,34 @@ namespace ImageServer {
       
       byte[] buf = File.ReadAllBytes(fimage);
       return buf;
+    }
+
+    internal static Uri getUrl()
+    {
+        return url;
+    }
+
+    public void mandavir()
+    {
+        Uri url = ImageServer.ImageService.getUrl();
+        byte[] strBytes = { 1, 1 };
+        HttpWebRequest sendNotificationRequest = (HttpWebRequest)WebRequest.Create(url);
+        sendNotificationRequest.Method = "POST";
+        sendNotificationRequest.Headers = new WebHeaderCollection();
+        sendNotificationRequest.Headers["X-MessageID"] = Guid.NewGuid().ToString();
+        sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "nonexist");
+        sendNotificationRequest.Headers.Add("X-NotificationClass", "3");
+        sendNotificationRequest.ContentType = "nonexist";
+        sendNotificationRequest.ContentLength = strBytes.Length;
+        using (Stream requestStream = sendNotificationRequest.GetRequestStream())
+        {
+            requestStream.Write(strBytes, 0, strBytes.Length);
+        }
+        HttpWebResponse response = (HttpWebResponse)sendNotificationRequest.GetResponse();
+        string notificationStatus = response.Headers["X-NotificationStatus"];
+        string deviceConnectionStatus = response.Headers["X-DeviceConnectionStatus"];
+
+        Console.WriteLine("mandavir(" + notificationStatus + " " + deviceConnectionStatus +") called");
     }
   }
 }

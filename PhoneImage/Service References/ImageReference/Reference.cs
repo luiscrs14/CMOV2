@@ -32,6 +32,11 @@ namespace PhoneImage.ImageReference {
         System.IAsyncResult BeginSetUrl(System.Uri url, System.AsyncCallback callback, object asyncState);
         
         string EndSetUrl(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImageService/mandavir", ReplyAction="http://tempuri.org/IImageService/mandavirResponse")]
+        System.IAsyncResult Beginmandavir(System.AsyncCallback callback, object asyncState);
+        
+        void Endmandavir(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -117,6 +122,12 @@ namespace PhoneImage.ImageReference {
         
         private System.Threading.SendOrPostCallback onSetUrlCompletedDelegate;
         
+        private BeginOperationDelegate onBeginmandavirDelegate;
+        
+        private EndOperationDelegate onEndmandavirDelegate;
+        
+        private System.Threading.SendOrPostCallback onmandavirCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -175,6 +186,8 @@ namespace PhoneImage.ImageReference {
         public event System.EventHandler<GetImageCompletedEventArgs> GetImageCompleted;
         
         public event System.EventHandler<SetUrlCompletedEventArgs> SetUrlCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> mandavirCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -316,6 +329,49 @@ namespace PhoneImage.ImageReference {
                         url}, this.onEndSetUrlDelegate, this.onSetUrlCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PhoneImage.ImageReference.IImageService.Beginmandavir(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.Beginmandavir(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void PhoneImage.ImageReference.IImageService.Endmandavir(System.IAsyncResult result) {
+            base.Channel.Endmandavir(result);
+        }
+        
+        private System.IAsyncResult OnBeginmandavir(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((PhoneImage.ImageReference.IImageService)(this)).Beginmandavir(callback, asyncState);
+        }
+        
+        private object[] OnEndmandavir(System.IAsyncResult result) {
+            ((PhoneImage.ImageReference.IImageService)(this)).Endmandavir(result);
+            return null;
+        }
+        
+        private void OnmandavirCompleted(object state) {
+            if ((this.mandavirCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.mandavirCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void mandavirAsync() {
+            this.mandavirAsync(null);
+        }
+        
+        public void mandavirAsync(object userState) {
+            if ((this.onBeginmandavirDelegate == null)) {
+                this.onBeginmandavirDelegate = new BeginOperationDelegate(this.OnBeginmandavir);
+            }
+            if ((this.onEndmandavirDelegate == null)) {
+                this.onEndmandavirDelegate = new EndOperationDelegate(this.OnEndmandavir);
+            }
+            if ((this.onmandavirCompletedDelegate == null)) {
+                this.onmandavirCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnmandavirCompleted);
+            }
+            base.InvokeAsync(this.onBeginmandavirDelegate, null, this.onEndmandavirDelegate, this.onmandavirCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -428,6 +484,17 @@ namespace PhoneImage.ImageReference {
                 object[] _args = new object[0];
                 string _result = ((string)(base.EndInvoke("SetUrl", _args, result)));
                 return _result;
+            }
+            
+            public System.IAsyncResult Beginmandavir(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("mandavir", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void Endmandavir(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("mandavir", _args, result);
             }
         }
     }

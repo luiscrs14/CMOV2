@@ -16,5 +16,8 @@ namespace ImageServer {
 
     [OperationContract]
     String SetUrl(Uri url);
+  
+    [OperationContract]
+    void mandavir();
   }
 }

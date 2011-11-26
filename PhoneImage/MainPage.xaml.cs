@@ -29,7 +29,9 @@ namespace PhoneImage {
       client.GetImageCompleted += OnGetImageCompleted;
       client.DoWorkAsync();
       client.GetImageAsync(0);
-
+     
+      System.Diagnostics.Debug.WriteLine("Got raw notification:");
+      Debugger.Log(3, "ddd", "dssad");
       string channelName = "ChannelName";
       httpChannel = HttpNotificationChannel.Find(channelName);
       if (httpChannel != null)
@@ -63,6 +65,7 @@ namespace PhoneImage {
     private void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
       int id = Convert.ToInt32(slider1.Value);
       client.GetImageAsync(id);
+      client.mandavirAsync();
       
     }
 
@@ -72,7 +75,10 @@ namespace PhoneImage {
         channelUri = e.ChannelUri;
         httpChannel.BindToShellTile();
         httpChannel.BindToShellToast();
+
+        httpChannel.HttpNotificationReceived += OnHttpNotification;
         httpChannel.ShellToastNotificationReceived += OnToastNotification;
+        
     }
     void OnErrorOccurred(object sender, NotificationChannelErrorEventArgs e)
     {
@@ -81,6 +87,7 @@ namespace PhoneImage {
 
     void OnToastNotification(object sender, NotificationEventArgs e)
     {
+        MessageBox.Show("chegou noti");
         if (e.Collection != null)
         {
             Dictionary<string, string> collection = (Dictionary<string, string>)e.Collection;
@@ -90,6 +97,16 @@ namespace PhoneImage {
             }
         }
     }
-
+    private void OnHttpNotification(object sender, HttpNotificationEventArgs e)
+    {
+        Debug.WriteLine("Got raw notification:");
+        // The client and server must agree on the format of this notification: it's just bytes
+        // as far as the phone is concerned. If the application is not running, this notification will
+        // be dropped. In this case, we suppose the payload is a string that was serialized with
+        // BinaryWriter.
+        BinaryReader reader = new BinaryReader(e.Notification.Body, System.Text.Encoding.UTF8);
+        string notificationText = reader.ReadString();
+        Debug.WriteLine(notificationText);
+    }
   }
 }
