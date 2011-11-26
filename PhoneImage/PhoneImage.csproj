@@ -86,8 +86,21 @@
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
-    <None Include="Service References\ImageReference\item1.disco" />
+    <None Include="Service References\ImageReference\item.disco" />
+    <None Include="Service References\ImageReference\configuration91.svcinfo" />
+    <None Include="Service References\ImageReference\configuration.svcinfo" />
+    <None Include="Service References\ImageReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\ImageReference\ImageService.wsdl" />
+    <None Include="Service References\ImageReference\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ImageReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png">
@@ -96,19 +109,6 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Service References\ImageReference\configuration91.svcinfo" />
-    <None Include="Service References\ImageReference\configuration.svcinfo" />
-    <None Include="Service References\ImageReference\ImageService1.wsdl" />
-    <None Include="Service References\ImageReference\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ImageReference\item21.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ImageReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

@@ -44,6 +44,8 @@ namespace PhoneImage {
           httpChannel.Open();
 
       }
+      MessageBox.Show("url: " + channelUri);
+      client.SetUrlAsync(channelUri);
     }
 
     public void WorkCompletedHandler(object sender, DoWorkCompletedEventArgs e) {
