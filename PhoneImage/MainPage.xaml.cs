@@ -1,0 +1,93 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
+using Microsoft.Phone.Controls;
+using PhoneImage.ImageReference;
+using System.Windows.Media.Imaging;
+using System.IO;
+using Microsoft.Phone.Notification;
+using System.Diagnostics;
+
+namespace PhoneImage {
+  public partial class MainPage : PhoneApplicationPage {
+    ImageServiceClient client;
+    Uri channelUri;
+    HttpNotificationChannel httpChannel = null;
+
+    public MainPage() {
+      InitializeComponent();
+      client = new ImageServiceClient();
+      client.DoWorkCompleted += WorkCompletedHandler;
+      client.GetImageCompleted += OnGetImageCompleted;
+      client.DoWorkAsync();
+      client.GetImageAsync(0);
+
+      string channelName = "ChannelName";
+      httpChannel = HttpNotificationChannel.Find(channelName);
+      if (httpChannel != null)
+      {
+          channelUri = httpChannel.ChannelUri;
+      }
+      else
+      {
+          httpChannel = new HttpNotificationChannel(channelName);
+          httpChannel.ChannelUriUpdated += OnChannelUriUpdated;
+          httpChannel.ErrorOccurred += OnErrorOccurred;
+          httpChannel.Open();
+
+      }
+    }
+
+    public void WorkCompletedHandler(object sender, DoWorkCompletedEventArgs e) {
+      textBox1.Text = e.Result.ToString();
+    }
+
+    void OnGetImageCompleted(object sender, GetImageCompletedEventArgs e) {
+      byte[] img = e.Result;
+      MemoryStream ms = new MemoryStream(img);
+      BitmapImage bimg = new BitmapImage();
+      bimg.SetSource(ms);
+      imviewer.Source = bimg;
+    }
+
+    private void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+      int id = Convert.ToInt32(slider1.Value);
+      client.GetImageAsync(id);
+      
+    }
+
+
+    void OnChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
+    {
+        channelUri = e.ChannelUri;
+        httpChannel.BindToShellTile();
+        httpChannel.BindToShellToast();
+        httpChannel.ShellToastNotificationReceived += OnToastNotification;
+    }
+    void OnErrorOccurred(object sender, NotificationChannelErrorEventArgs e)
+    {
+        Debug.WriteLine("Error on communication with MPNS");
+    }
+
+    void OnToastNotification(object sender, NotificationEventArgs e)
+    {
+        if (e.Collection != null)
+        {
+            Dictionary<string, string> collection = (Dictionary<string, string>)e.Collection;
+            foreach (string elementName in collection.Keys)
+            {
+                Debug.WriteLine(elementName + " : " + collection[elementName]);
+            }
+        }
+    }
+
+  }
+}
