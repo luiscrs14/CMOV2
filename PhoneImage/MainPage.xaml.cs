@@ -30,8 +30,7 @@ namespace PhoneImage {
       client.DoWorkAsync();
       client.GetImageAsync(0);
      
-      System.Diagnostics.Debug.WriteLine("Got raw notification:");
-      Debugger.Log(3, "ddd", "dssad");
+      
       string channelName = "ChannelName";
       httpChannel = HttpNotificationChannel.Find(channelName);
       if (httpChannel != null)
@@ -44,10 +43,11 @@ namespace PhoneImage {
           httpChannel.ChannelUriUpdated += OnChannelUriUpdated;
           httpChannel.ErrorOccurred += OnErrorOccurred;
           httpChannel.Open();
+          channelUri = httpChannel.ChannelUri;
 
       }
-      MessageBox.Show("url: " + channelUri);
       client.SetUrlAsync(channelUri);
+      MessageBox.Show("url: " + channelUri);
     }
 
     public void WorkCompletedHandler(object sender, DoWorkCompletedEventArgs e) {
@@ -73,7 +73,7 @@ namespace PhoneImage {
     void OnChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
     {
         channelUri = e.ChannelUri;
-        httpChannel.BindToShellTile();
+        //httpChannel.BindToShellTile();
         httpChannel.BindToShellToast();
 
         httpChannel.HttpNotificationReceived += OnHttpNotification;

@@ -36,7 +36,7 @@ namespace CMOVServer
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                dddTextBox.Text = openFileDialog1.FileName;
+                //dddTextBox.Text = openFileDialog1.FileName;
                 //talvezno futuro se tenha que alterar para safefilename
             }
         }
