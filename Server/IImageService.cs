@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-namespace ImageServer {
+namespace CMOVServer {
   [ServiceContract]
   public interface IImageService {
     [OperationContract]

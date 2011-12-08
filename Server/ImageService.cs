@@ -7,7 +7,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 
-namespace ImageServer {
+namespace CMOVServer {
   public class ImageService : IImageService {
     static Uri url;
     public double DoWork() {
@@ -56,7 +56,7 @@ namespace ImageServer {
 
     public void mandavir()
     {
-        Uri url = ImageServer.ImageService.getUrl();
+        Uri url = CMOVServer.ImageService.getUrl();
         byte[] strBytes = { 1, 1 };
         HttpWebRequest sendNotificationRequest = (HttpWebRequest)WebRequest.Create(url);
         sendNotificationRequest.Method = "POST";
