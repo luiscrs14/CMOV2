@@ -471,7 +471,7 @@ namespace CMOVServer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PropertiesRow AddPropertiesRow(UsersRow parentUsersRowByUsers_Properties, string type, string address, string city, int bedroom_no_, int bathroom_no_, int price, string state) {
+            public PropertiesRow AddPropertiesRow(string type, string address, string city, int bedroom_no_, int bathroom_no_, int price, string state) {
                 PropertiesRow rowPropertiesRow = ((PropertiesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -482,9 +482,6 @@ namespace CMOVServer {
                         bathroom_no_,
                         price,
                         state};
-                if ((parentUsersRowByUsers_Properties != null)) {
-                    columnValuesArray[0] = parentUsersRowByUsers_Properties[0];
-                }
                 rowPropertiesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPropertiesRow);
                 return rowPropertiesRow;
@@ -545,6 +542,8 @@ namespace CMOVServer {
                 base.Columns.Add(this.columnstate);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
+                this.columnid.AutoIncrement = true;
+                this.columnid.AutoIncrementSeed = 1;
                 this.columnid.AllowDBNull = false;
                 this.columnid.Unique = true;
                 this.columntype.AllowDBNull = false;

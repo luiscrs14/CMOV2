@@ -139,7 +139,7 @@ SELECT id FROM Users WHERE (id = @id)</CommandText>
         <xs:element name="Properties" msprop:Generator_TableClassName="PropertiesDataTable" msprop:Generator_TableVarName="tableProperties" msprop:Generator_TablePropName="Properties" msprop:Generator_RowDeletingName="PropertiesRowDeleting" msprop:Generator_UserTableName="Properties" msprop:Generator_RowChangingName="PropertiesRowChanging" msprop:Generator_RowEvHandlerName="PropertiesRowChangeEventHandler" msprop:Generator_RowDeletedName="PropertiesRowDeleted" msprop:Generator_RowEvArgName="PropertiesRowChangeEvent" msprop:Generator_RowChangedName="PropertiesRowChanged" msprop:Generator_RowClassName="PropertiesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
               <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -194,7 +194,7 @@ SELECT id FROM Users WHERE (id = @id)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Users_Properties" msdata:parent="Users" msdata:child="Properties" msdata:parentkey="id" msdata:childkey="id" msprop:Generator_UserChildTable="Properties" msprop:Generator_ChildPropName="GetPropertiesRows" msprop:Generator_ParentPropName="UsersRow" msprop:Generator_UserRelationName="Users_Properties" msprop:Generator_RelationVarName="relationUsers_Properties" msprop:Generator_UserParentTable="Users" />
+      <msdata:Relationship name="Users_Properties" msdata:parent="Users" msdata:child="Properties" msdata:parentkey="id" msdata:childkey="id" msprop:Generator_UserChildTable="Properties" msprop:Generator_ChildPropName="GetPropertiesRows" msprop:Generator_UserParentTable="Users" msprop:Generator_UserRelationName="Users_Properties" msprop:Generator_RelationVarName="relationUsers_Properties" msprop:Generator_ParentPropName="UsersRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
