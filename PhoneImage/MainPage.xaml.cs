@@ -51,7 +51,7 @@ namespace PhoneImage {
     }
 
     public void WorkCompletedHandler(object sender, DoWorkCompletedEventArgs e) {
-      textBox1.Text = e.Result.ToString();
+        ;//priceTB.Text = e.Result.ToString();
     }
 
     void OnGetImageCompleted(object sender, GetImageCompletedEventArgs e) {
@@ -62,11 +62,11 @@ namespace PhoneImage {
       imviewer.Source = bimg;
     }
 
-    private void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+   /* private void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
       int id = Convert.ToInt32(slider1.Value);
       client.GetImageAsync(id);
       
-    }
+    }*/
 
 
     void OnChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
@@ -106,6 +106,13 @@ namespace PhoneImage {
         BinaryReader reader = new BinaryReader(e.Notification.Body, System.Text.Encoding.UTF8);
         string notificationText = reader.ReadString();
         Debug.WriteLine(notificationText);
+    }
+
+    private void button2_Click(object sender, RoutedEventArgs e)
+    {
+        button1.IsEnabled = true;
+        //pede a próxima imagem
+        //client.GetImageAsync(id);
     }
   }
 }

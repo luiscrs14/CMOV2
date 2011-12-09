@@ -34,17 +34,17 @@ namespace CMOVServer
                     if (propType.Equals("Castle"))
                     {
                         castleChanges = true;
-                        imageUrl = "Images\\castle.png";
+                        imageUrl = "castle.png";
                     }
                     else if (propType.Equals("Flat"))
                     {
                         flatChanges = true;
-                         imageUrl = "Images\\flat.png";
+                         imageUrl = "flat.png";
                     }
                     else if (propType.Equals("House"))
                     {
                         houseChanges = true;
-                        imageUrl = "Images\\house.png";
+                        imageUrl = "house.png";
                     }
                     Console.WriteLine(propType);
                 }
@@ -62,6 +62,8 @@ namespace CMOVServer
 
         private void ServerGUI_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'database1DataSet.Users' table. You can move, or remove it, as needed.
+            this.usersTableAdapter.Fill(this.database1DataSet.Users);
             // TODO: This line of code loads data into the 'database1DataSet.Properties' table. You can move, or remove it, as needed.
             this.propertiesTableAdapter.Fill(this.database1DataSet.Properties);
 

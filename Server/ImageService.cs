@@ -21,6 +21,14 @@ namespace CMOVServer {
     {
         Console.WriteLine("SetUrl(" + url + ") called");
         url = url1;
+        Database1DataSetTableAdapters.UsersTableAdapter usersTA = new Database1DataSetTableAdapters.UsersTableAdapter();
+        Database1DataSetTableAdapters.PropertiesTableAdapter propsTA = new Database1DataSetTableAdapters.PropertiesTableAdapter();
+        Database1DataSet dataset = new Database1DataSet();
+        propsTA.Insert(2, "piças", "2", "2", 2, 2, 2, "2", "2");
+        usersTA.Insert(3);
+        usersTA.Update(dataset);
+        propsTA.Update(dataset);
+       // dataset.Properties.
         return "URL set";
         
     }
@@ -51,6 +59,34 @@ namespace CMOVServer {
       return buf;
     }
 
+    public byte[] GetHouse(int id)
+    {
+        string fimage;
+
+        Console.WriteLine("GetImage(" + id + ") called");
+        switch (id)
+        {
+            case 0:
+                fimage = "Images\\home1.png";
+                break;
+            case 1:
+                fimage = "Images\\home2.png";
+                break;
+            case 2:
+                fimage = "Images\\home3.png";
+                break;
+            case 3:
+                fimage = "Images\\home4.png";
+                break;
+            default:
+                fimage = "Images\\home5.png";
+                break;
+        }
+
+        byte[] buf = File.ReadAllBytes(fimage);
+        return buf;
+    }
+
     internal static Uri getUrl()
     {
         return url;
@@ -65,7 +101,7 @@ namespace CMOVServer {
                 new XDeclaration("1.0", "utf-8", "true")
                 , new XElement(wp + "Notification"
                     , new XElement(wp + "Tile"
-                        , new XElement(wp + "BackgroundImage", File.ReadAllBytes(img))
+                        , new XElement(wp + "BackgroundImage", img)
                         , new XElement(wp + "Count", count)
                         , new XElement(wp + "Title", text)))).ToString());
     }

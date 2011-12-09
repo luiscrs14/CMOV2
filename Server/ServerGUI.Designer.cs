@@ -66,6 +66,10 @@
             this.priceTextBox = new System.Windows.Forms.TextBox();
             this.stateTextBox = new System.Windows.Forms.TextBox();
             this.imageTextBox = new System.Windows.Forms.TextBox();
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usersTableAdapter = new CMOVServer.Database1DataSetTableAdapters.UsersTableAdapter();
+            this.usersDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             idLabel = new System.Windows.Forms.Label();
             typeLabel = new System.Windows.Forms.Label();
             addressLabel = new System.Windows.Forms.Label();
@@ -79,6 +83,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.propertiesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.propertiesBindingNavigator)).BeginInit();
             this.propertiesBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // idLabel
@@ -218,7 +224,7 @@
             this.propertiesBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.propertiesBindingNavigator.Name = "propertiesBindingNavigator";
             this.propertiesBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.propertiesBindingNavigator.Size = new System.Drawing.Size(558, 27);
+            this.propertiesBindingNavigator.Size = new System.Drawing.Size(882, 27);
             this.propertiesBindingNavigator.TabIndex = 0;
             this.propertiesBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -411,11 +417,40 @@
             this.imageTextBox.TabIndex = 36;
             this.imageTextBox.TextChanged += new System.EventHandler(this.imageTextBox_TextChanged);
             // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataMember = "Users";
+            this.usersBindingSource.DataSource = this.database1DataSet;
+            // 
+            // usersTableAdapter
+            // 
+            this.usersTableAdapter.ClearBeforeFill = true;
+            // 
+            // usersDataGridView
+            // 
+            this.usersDataGridView.AutoGenerateColumns = false;
+            this.usersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.usersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.usersDataGridView.DataSource = this.usersBindingSource;
+            this.usersDataGridView.Location = new System.Drawing.Point(314, 105);
+            this.usersDataGridView.Name = "usersDataGridView";
+            this.usersDataGridView.RowTemplate.Height = 24;
+            this.usersDataGridView.Size = new System.Drawing.Size(300, 220);
+            this.usersDataGridView.TabIndex = 36;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
             // ServerGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 356);
+            this.ClientSize = new System.Drawing.Size(882, 392);
+            this.Controls.Add(this.usersDataGridView);
             this.Controls.Add(idLabel);
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(typeLabel);
@@ -444,6 +479,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.propertiesBindingNavigator)).EndInit();
             this.propertiesBindingNavigator.ResumeLayout(false);
             this.propertiesBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -478,5 +515,9 @@
         private System.Windows.Forms.TextBox priceTextBox;
         private System.Windows.Forms.TextBox stateTextBox;
         private System.Windows.Forms.TextBox imageTextBox;
+        private System.Windows.Forms.BindingSource usersBindingSource;
+        private Database1DataSetTableAdapters.UsersTableAdapter usersTableAdapter;
+        private System.Windows.Forms.DataGridView usersDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
@@ -92,6 +93,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="castle.png" />
+    <None Include="flat.png" />
+    <None Include="house.png" />
     <Content Include="ServiceReferences.ClientConfig" />
     <None Include="Service References\ImageReference\service1.wsdl" />
     <None Include="Service References\ImageReference\service2.xsd">
@@ -116,6 +120,9 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ImageReference\" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -126,4 +133,7 @@
   </Target>
   -->
   <ProjectExtensions />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)Images" "$(TargetDir)Images" /S /I /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>
