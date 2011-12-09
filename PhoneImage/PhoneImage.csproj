@@ -93,11 +93,11 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="ServiceReferences.ClientConfig" />
-    <None Include="Service References\ImageReference\service.wsdl" />
-    <None Include="Service References\ImageReference\service.xsd">
+    <None Include="Service References\ImageReference\service1.wsdl" />
+    <None Include="Service References\ImageReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ImageReference\service1.xsd">
+    <None Include="Service References\ImageReference\service21.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

@@ -7,6 +7,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Xml.Linq;
+using System.Drawing;
 
 namespace CMOVServer {
   public class ImageService : IImageService {
@@ -55,7 +56,7 @@ namespace CMOVServer {
         return url;
     }
 
-    public byte[] PrepareTile(int count, string text)
+    public byte[] PrepareTile(int count, string text, String img )
     {
         XNamespace wp = "WPNotification";
 
@@ -64,7 +65,7 @@ namespace CMOVServer {
                 new XDeclaration("1.0", "utf-8", "true")
                 , new XElement(wp + "Notification"
                     , new XElement(wp + "Tile"
-                        , new XElement(wp + "BackgroundImage", null)
+                        , new XElement(wp + "BackgroundImage", File.ReadAllBytes(img))
                         , new XElement(wp + "Count", count)
                         , new XElement(wp + "Title", text)))).ToString());
     }
