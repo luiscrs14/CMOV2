@@ -24,8 +24,8 @@ namespace CMOVServer {
         Database1DataSetTableAdapters.UsersTableAdapter usersTA = new Database1DataSetTableAdapters.UsersTableAdapter();
         Database1DataSetTableAdapters.PropertiesTableAdapter propsTA = new Database1DataSetTableAdapters.PropertiesTableAdapter();
         Database1DataSet dataset = new Database1DataSet();
-        propsTA.Insert(2, "piças", "2", "2", 2, 2, 2, "2", "2");
-        usersTA.Insert(3);
+       // propsTA.Insert(2, "piças", "2", "2", 2, 2, 2, "2", "2");
+        //usersTA.Insert(3);
         usersTA.Update(dataset);
         propsTA.Update(dataset);
        // dataset.Properties.

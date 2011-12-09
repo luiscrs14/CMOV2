@@ -64,6 +64,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EntryPage.xaml.cs">
+      <DependentUpon>EntryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -79,6 +82,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="EntryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,6 +103,9 @@
     <None Include="castle.png" />
     <None Include="flat.png" />
     <None Include="house.png" />
+    <Resource Include="Images\castle.png" />
+    <Resource Include="Images\flat.png" />
+    <Resource Include="Images\house.png" />
     <Content Include="ServiceReferences.ClientConfig" />
     <None Include="Service References\ImageReference\service1.wsdl" />
     <None Include="Service References\ImageReference\service2.xsd">
@@ -120,9 +130,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ImageReference\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

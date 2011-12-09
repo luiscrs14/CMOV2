@@ -18,9 +18,7 @@ namespace CMOVServer
 
         private void propertiesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            bool castleChanges = false;
-            bool flatChanges = false;
-            bool houseChanges = false;
+           
             this.Validate();
             this.propertiesBindingSource.MoveLast();
             this.propertiesBindingSource.EndEdit();
@@ -33,17 +31,17 @@ namespace CMOVServer
                     String propType = recentChanges.Rows[i]["type"].ToString();
                     if (propType.Equals("Castle"))
                     {
-                        castleChanges = true;
+                        
                         imageUrl = "castle.png";
                     }
                     else if (propType.Equals("Flat"))
                     {
-                        flatChanges = true;
+                        
                          imageUrl = "flat.png";
                     }
                     else if (propType.Equals("House"))
                     {
-                        houseChanges = true;
+                        
                         imageUrl = "house.png";
                     }
                     Console.WriteLine(propType);
@@ -76,93 +74,7 @@ namespace CMOVServer
             if (openf.ShowDialog() == DialogResult.OK)
             {
                 imageTextBox.Text = openf.FileName;
-                //.ImageLocation = openf.FileName;
             }
-        }
-
-        private void idTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void typeLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void idLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void addressLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void addressTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cityLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cityTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bedroom_no_Label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bedroom_no_TextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bathroom_no_Label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bathroom_no_TextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void priceLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void priceTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void stateLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void stateTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void imageLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void imageTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
