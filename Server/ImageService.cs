@@ -55,24 +55,22 @@ namespace CMOVServer {
         return url;
     }
 
-    public byte[] PrepareTile()
+    public byte[] PrepareTile(int count, string text)
     {
         XNamespace wp = "WPNotification";
-
-        Console.WriteLine("Tou aki");
 
         return Encoding.UTF8.GetBytes(
             new XDocument(
                 new XDeclaration("1.0", "utf-8", "true")
                 , new XElement(wp + "Notification"
                     , new XElement(wp + "Tile"
-                        , new XElement(wp + "BackgroundImage", null)//"http://www.pontoxp.com/wp-content/uploads/2009/08/como-melhorar-o-desempenho-de-programas-no-windows.jpg")
-                        , new XElement(wp + "Count", 1)
-                        , new XElement(wp + "Title", "ola")))).ToString());
+                        , new XElement(wp + "BackgroundImage", null)
+                        , new XElement(wp + "Count", count)
+                        , new XElement(wp + "Title", text)))).ToString());
     }
 
 
-    public byte[] PrepareToast()
+    public byte[] PrepareToast(string title, string message)
     {
         XNamespace wp = "WPNotification";
 
@@ -81,21 +79,38 @@ namespace CMOVServer {
                 new XDeclaration("1.0", "utf-8", "false")
                 , new XElement(wp + "Notification"
                     , new XElement(wp + "Toast"
-                        , new XElement(wp + "Text1", "New Property")
-                        , new XElement(wp + "Text2", "Cenas")))).ToString());
+                        , new XElement(wp + "Text1", title)
+                        , new XElement(wp + "Text2", message)))).ToString());
     }
 
-    public void mandavir()
+    public void mandavir(int type, byte[] strBytes)
     {
         Uri url = CMOVServer.ImageService.getUrl();
-        byte[] strBytes = PrepareToast();// PrepareTile();
+        Console.WriteLine("url: " + url);
+        //byte[] strBytes = PrepareToast();// PrepareTile();
         HttpWebRequest sendNotificationRequest = (HttpWebRequest)WebRequest.Create(url);
         sendNotificationRequest.Method = "POST";
         sendNotificationRequest.Headers = new WebHeaderCollection();
         sendNotificationRequest.Headers["X-MessageID"] = Guid.NewGuid().ToString();
-        sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "toast");
-        sendNotificationRequest.Headers.Add("X-NotificationClass", "2");
-        sendNotificationRequest.ContentType = "text/xml";//"nonexist";
+        if (type == 1)
+        {
+            sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "token");
+            sendNotificationRequest.Headers.Add("X-NotificationClass", "1");
+            sendNotificationRequest.ContentType = "text/xml";
+        }
+        else if (type == 2)
+        {
+            sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "toast");
+            sendNotificationRequest.Headers.Add("X-NotificationClass", "2");
+            sendNotificationRequest.ContentType = "text/xml";
+        }
+        else
+        {
+            sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "nonexistent");
+            sendNotificationRequest.Headers.Add("X-NotificationClass", "3");
+            sendNotificationRequest.ContentType = "nonexist";
+        }
+
         sendNotificationRequest.ContentLength = strBytes.Length;
         using (Stream requestStream = sendNotificationRequest.GetRequestStream())
         {
@@ -106,7 +121,7 @@ namespace CMOVServer {
         string deviceConnectionStatus = response.Headers["X-DeviceConnectionStatus"];
         string notificationChannelStatus = response.Headers["X-SubscriptionStatus"];
 
-        Console.WriteLine("mandavir(" + notificationChannelStatus + notificationStatus + " " + deviceConnectionStatus + ") called");
+        Console.WriteLine("mandavir(" + response.StatusCode + " " + notificationChannelStatus + " " + notificationStatus + " " + deviceConnectionStatus + ") called");
     }
   }
 }

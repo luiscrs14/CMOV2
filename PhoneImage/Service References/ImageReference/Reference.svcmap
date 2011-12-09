@@ -20,12 +20,12 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.2:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://193.137.154.174:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="4782aac2-06d9-4654-940f-8b2d98ee6b02" SourceId="1" SourceUrl="http://192.168.1.2:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="04e9cd3d-c5ab-47af-b658-4e423db70804" SourceId="1" SourceUrl="http://192.168.1.2:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="45143720-3364-4673-98f2-9e47cb6cbc76" SourceId="1" SourceUrl="http://192.168.1.2:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="adff809c-8cee-47a3-9738-dcf0a5f24cf9" SourceId="1" SourceUrl="http://193.137.154.174:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="dc866046-fc0b-45fe-a56a-c29e9d0c427e" SourceId="1" SourceUrl="http://193.137.154.174:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3dd47722-dce9-43b0-9465-3c97ce9aff48" SourceId="1" SourceUrl="http://193.137.154.174:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

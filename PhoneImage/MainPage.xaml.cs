@@ -65,7 +65,6 @@ namespace PhoneImage {
     private void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
       int id = Convert.ToInt32(slider1.Value);
       client.GetImageAsync(id);
-      client.mandavirAsync();
       
     }
 
@@ -73,7 +72,7 @@ namespace PhoneImage {
     void OnChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
     {
         channelUri = e.ChannelUri;
-        //httpChannel.BindToShellTile();
+        httpChannel.BindToShellTile();
         httpChannel.BindToShellToast();
 
         httpChannel.HttpNotificationReceived += OnHttpNotification;

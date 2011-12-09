@@ -16,8 +16,5 @@ namespace CMOVServer {
 
     [OperationContract]
     String SetUrl(Uri url);
-  
-    [OperationContract]
-    void mandavir();
   }
 }

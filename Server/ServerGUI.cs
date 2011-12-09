@@ -20,8 +20,11 @@ namespace CMOVServer
         {
             this.Validate();
             this.propertiesBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.database1DataSet);
-
+            int changes = this.tableAdapterManager.UpdateAll(this.database1DataSet);
+            ImageService imgserv = new ImageService();
+            byte[] notification = imgserv.PrepareTile(changes, "New notification");
+            imgserv.mandavir(1, notification);
+            Console.WriteLine("changes: " + changes);
         }
 
         private void ServerGUI_Load(object sender, EventArgs e)

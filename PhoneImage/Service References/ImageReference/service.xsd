@@ -40,14 +40,4 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="mandavir">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="mandavirResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
 </xs:schema>
