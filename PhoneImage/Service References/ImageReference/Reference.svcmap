@@ -26,6 +26,7 @@
     <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="ddd33bd2-d73d-4943-99fa-6dde4ca2d1eb" SourceId="1" SourceUrl="http://172.30.20.211:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
     <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="4ff06009-44ab-4d30-834a-2c739763771a" SourceId="1" SourceUrl="http://172.30.20.211:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
     <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="69459ec5-c516-494d-91fe-8009013e25c9" SourceId="1" SourceUrl="http://172.30.20.211:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="ee188e7f-849d-4dda-a764-dd32e713bc6f" SourceId="1" SourceUrl="http://172.30.20.211:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

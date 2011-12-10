@@ -94,18 +94,18 @@
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
+    <None Include="Service References\ImageReference\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ImageReference\configuration91.svcinfo" />
     <None Include="Service References\ImageReference\configuration.svcinfo" />
     <None Include="Service References\ImageReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="castle.png" />
-    <None Include="flat.png" />
-    <None Include="house.png" />
-    <Resource Include="Images\castle.png" />
-    <Resource Include="Images\flat.png" />
-    <Resource Include="Images\house.png" />
+    <Content Include="castle.png" />
+    <Content Include="flat.png" />
+    <Content Include="house.png" />
     <Content Include="ServiceReferences.ClientConfig" />
     <None Include="Service References\ImageReference\service1.wsdl" />
     <None Include="Service References\ImageReference\service2.xsd">
@@ -130,7 +130,6 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ImageReference\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -142,6 +141,7 @@
   -->
   <ProjectExtensions />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)Images" "$(TargetDir)Images" /S /I /Y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -86,7 +86,6 @@ namespace PhoneImage {
 
     void OnToastNotification(object sender, NotificationEventArgs e)
     {
-        MessageBox.Show("chegou noti");
         if (e.Collection != null)
         {
             Dictionary<string, string> collection = (Dictionary<string, string>)e.Collection;

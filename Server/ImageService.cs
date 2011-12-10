@@ -8,10 +8,13 @@ using System.IO;
 using System.Net;
 using System.Xml.Linq;
 using System.Drawing;
+using System.Data;
 
 namespace CMOVServer {
   public class ImageService : IImageService {
     static Uri url;
+    static int index = 0;
+    Database1DataSet dataset = new Database1DataSet();
     public double DoWork() {
       Console.WriteLine("DoWork() called");
       return 3.14159;
@@ -59,32 +62,13 @@ namespace CMOVServer {
       return buf;
     }
 
-    public byte[] GetHouse(int id)
+    public object[] GetHouse(int id)
     {
-        string fimage;
-
-        Console.WriteLine("GetImage(" + id + ") called");
-        switch (id)
-        {
-            case 0:
-                fimage = "Images\\home1.png";
-                break;
-            case 1:
-                fimage = "Images\\home2.png";
-                break;
-            case 2:
-                fimage = "Images\\home3.png";
-                break;
-            case 3:
-                fimage = "Images\\home4.png";
-                break;
-            default:
-                fimage = "Images\\home5.png";
-                break;
-        }
-
-        byte[] buf = File.ReadAllBytes(fimage);
-        return buf;
+        Console.WriteLine("GetHouse(" + index + ") called");
+        if (id == 0)
+            return dataset.Properties.Rows[++index].ItemArray;
+        else
+            return dataset.Properties.Rows[--index].ItemArray;
     }
 
     internal static Uri getUrl()

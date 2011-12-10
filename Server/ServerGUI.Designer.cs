@@ -95,7 +95,7 @@
             idLabel.Size = new System.Drawing.Size(23, 17);
             idLabel.TabIndex = 19;
             idLabel.Text = "id:";
-            idLabel.Click += new System.EventHandler(this.idLabel_Click);
+            
             // 
             // typeLabel
             // 
@@ -105,7 +105,7 @@
             typeLabel.Size = new System.Drawing.Size(39, 17);
             typeLabel.TabIndex = 21;
             typeLabel.Text = "type:";
-            typeLabel.Click += new System.EventHandler(this.typeLabel_Click);
+            
             // 
             // addressLabel
             // 
@@ -115,7 +115,7 @@
             addressLabel.Size = new System.Drawing.Size(63, 17);
             addressLabel.TabIndex = 23;
             addressLabel.Text = "address:";
-            addressLabel.Click += new System.EventHandler(this.addressLabel_Click);
+            
             // 
             // cityLabel
             // 
@@ -125,7 +125,7 @@
             cityLabel.Size = new System.Drawing.Size(33, 17);
             cityLabel.TabIndex = 25;
             cityLabel.Text = "city:";
-            cityLabel.Click += new System.EventHandler(this.cityLabel_Click);
+            
             // 
             // bedroom_no_Label
             // 
@@ -135,7 +135,7 @@
             bedroom_no_Label.Size = new System.Drawing.Size(92, 17);
             bedroom_no_Label.TabIndex = 27;
             bedroom_no_Label.Text = "bedroom no :";
-            bedroom_no_Label.Click += new System.EventHandler(this.bedroom_no_Label_Click);
+            
             // 
             // bathroom_no_Label
             // 
@@ -145,7 +145,7 @@
             bathroom_no_Label.Size = new System.Drawing.Size(96, 17);
             bathroom_no_Label.TabIndex = 29;
             bathroom_no_Label.Text = "bathroom no :";
-            bathroom_no_Label.Click += new System.EventHandler(this.bathroom_no_Label_Click);
+            
             // 
             // priceLabel
             // 
@@ -155,7 +155,7 @@
             priceLabel.Size = new System.Drawing.Size(43, 17);
             priceLabel.TabIndex = 31;
             priceLabel.Text = "price:";
-            priceLabel.Click += new System.EventHandler(this.priceLabel_Click);
+            
             // 
             // stateLabel
             // 
@@ -165,7 +165,7 @@
             stateLabel.Size = new System.Drawing.Size(43, 17);
             stateLabel.TabIndex = 33;
             stateLabel.Text = "state:";
-            stateLabel.Click += new System.EventHandler(this.stateLabel_Click);
+            
             // 
             // imageLabel
             // 
@@ -175,7 +175,7 @@
             imageLabel.Size = new System.Drawing.Size(50, 17);
             imageLabel.TabIndex = 35;
             imageLabel.Text = "image:";
-            imageLabel.Click += new System.EventHandler(this.imageLabel_Click);
+            
             // 
             // database1DataSet
             // 
@@ -339,7 +339,7 @@
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(121, 22);
             this.idTextBox.TabIndex = 20;
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
+            
             // 
             // typeComboBox
             // 
@@ -361,7 +361,7 @@
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(121, 22);
             this.addressTextBox.TabIndex = 24;
-            this.addressTextBox.TextChanged += new System.EventHandler(this.addressTextBox_TextChanged);
+            
             // 
             // cityTextBox
             // 
@@ -370,7 +370,7 @@
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(121, 22);
             this.cityTextBox.TabIndex = 26;
-            this.cityTextBox.TextChanged += new System.EventHandler(this.cityTextBox_TextChanged);
+            
             // 
             // bedroom_no_TextBox
             // 
@@ -379,7 +379,7 @@
             this.bedroom_no_TextBox.Name = "bedroom_no_TextBox";
             this.bedroom_no_TextBox.Size = new System.Drawing.Size(121, 22);
             this.bedroom_no_TextBox.TabIndex = 28;
-            this.bedroom_no_TextBox.TextChanged += new System.EventHandler(this.bedroom_no_TextBox_TextChanged);
+            
             // 
             // bathroom_no_TextBox
             // 
@@ -388,7 +388,7 @@
             this.bathroom_no_TextBox.Name = "bathroom_no_TextBox";
             this.bathroom_no_TextBox.Size = new System.Drawing.Size(121, 22);
             this.bathroom_no_TextBox.TabIndex = 30;
-            this.bathroom_no_TextBox.TextChanged += new System.EventHandler(this.bathroom_no_TextBox_TextChanged);
+           
             // 
             // priceTextBox
             // 
@@ -397,7 +397,7 @@
             this.priceTextBox.Name = "priceTextBox";
             this.priceTextBox.Size = new System.Drawing.Size(121, 22);
             this.priceTextBox.TabIndex = 32;
-            this.priceTextBox.TextChanged += new System.EventHandler(this.priceTextBox_TextChanged);
+            
             // 
             // stateTextBox
             // 
@@ -406,7 +406,7 @@
             this.stateTextBox.Name = "stateTextBox";
             this.stateTextBox.Size = new System.Drawing.Size(121, 22);
             this.stateTextBox.TabIndex = 34;
-            this.stateTextBox.TextChanged += new System.EventHandler(this.stateTextBox_TextChanged);
+            
             // 
             // imageTextBox
             // 
@@ -415,7 +415,7 @@
             this.imageTextBox.Name = "imageTextBox";
             this.imageTextBox.Size = new System.Drawing.Size(121, 22);
             this.imageTextBox.TabIndex = 36;
-            this.imageTextBox.TextChanged += new System.EventHandler(this.imageTextBox_TextChanged);
+            
             // 
             // usersBindingSource
             // 

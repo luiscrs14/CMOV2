@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Data;
 
 namespace CMOVServer {
   [ServiceContract]
@@ -13,6 +14,9 @@ namespace CMOVServer {
 
     [OperationContract]
     byte[] GetImage(int id);
+
+    [OperationContract]
+    object[] GetHouse(int id);
 
     [OperationContract]
     String SetUrl(Uri url);

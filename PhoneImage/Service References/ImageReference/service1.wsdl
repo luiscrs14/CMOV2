@@ -4,6 +4,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IImageService_DoWork_InputMessage">
@@ -17,6 +18,12 @@
   </wsdl:message>
   <wsdl:message name="IImageService_GetImage_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IImageService_GetHouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHouse" />
+  </wsdl:message>
+  <wsdl:message name="IImageService_GetHouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHouseResponse" />
   </wsdl:message>
   <wsdl:message name="IImageService_SetUrl_InputMessage">
     <wsdl:part name="parameters" element="tns:SetUrl" />
@@ -32,6 +39,10 @@
     <wsdl:operation name="GetImage">
       <wsdl:input wsaw:Action="http://tempuri.org/IImageService/GetImage" message="tns:IImageService_GetImage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IImageService/GetImageResponse" message="tns:IImageService_GetImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImageService/GetHouse" message="tns:IImageService_GetHouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImageService/GetHouseResponse" message="tns:IImageService_GetHouse_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetUrl">
       <wsdl:input wsaw:Action="http://tempuri.org/IImageService/SetUrl" message="tns:IImageService_SetUrl_InputMessage" />
@@ -51,6 +62,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetImage">
       <soap:operation soapAction="http://tempuri.org/IImageService/GetImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHouse">
+      <soap:operation soapAction="http://tempuri.org/IImageService/GetHouse" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
