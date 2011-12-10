@@ -74,19 +74,28 @@ namespace CMOVServer {
         }
         if (id == -1){
             Console.WriteLine(dataset.Properties.Rows[0].ItemArray);
-            object[] cenas = new object[dataset.Properties.Rows[0].ItemArray.Length+1];
-            dataset.Properties.Rows[0].ItemArray.CopyTo(cenas,0);
-            cenas[dataset.Properties.Rows[0].ItemArray.Length] = File.ReadAllBytes(cenas[dataset.Properties.Rows[0].ItemArray.Length-1].ToString());
+            object[] auxArray = new object[dataset.Properties.Rows[0].ItemArray.Length+1];
+            dataset.Properties.Rows[0].ItemArray.CopyTo(auxArray, 0);
+            //adiciona a imagem ao array
+            auxArray[dataset.Properties.Rows[0].ItemArray.Length] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[0].ItemArray.Length - 1].ToString());
 
-            return cenas;
+            return auxArray;
         }
         if (id == 0){
             Console.WriteLine(dataset.Properties.Rows[index +1].ItemArray);
-            return dataset.Properties.Rows[++index].ItemArray;
+            object[] auxArray = new object[dataset.Properties.Rows[++index].ItemArray.Length + 1];
+            dataset.Properties.Rows[index].ItemArray.CopyTo(auxArray, 0);
+
+            auxArray[dataset.Properties.Rows[index].ItemArray.Length] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1].ToString());
+            return auxArray;
         }
         else{
             Console.WriteLine(dataset.Properties.Rows[index -1].ItemArray);
-            return dataset.Properties.Rows[--index].ItemArray;
+            object[] auxArray = new object[dataset.Properties.Rows[--index].ItemArray.Length + 1];
+            dataset.Properties.Rows[index].ItemArray.CopyTo(auxArray, 0);
+
+            auxArray[dataset.Properties.Rows[index].ItemArray.Length] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1].ToString());
+            return auxArray;
         }
     }
 

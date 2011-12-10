@@ -67,16 +67,15 @@ namespace PhoneImage {
 
     void OnGetHouseCompleted(object sender, GetHouseCompletedEventArgs e)
     {
-        MessageBox.Show("house: ");
+        MessageBox.Show("house: " + e.Result.ToArray<object>().Length);
         if (e.Result != null)
         {
             object[] house = e.Result.ToArray<object>();
-            for(int i=0;i<house.Length;i++)
-                MessageBox.Show("house: " + house[i]);
+           /* for(int i=0;i<house.Length;i++)
+                MessageBox.Show("house: " + house[i]);*/
             cityTB.Text = house[2].ToString();
 
-
-            MemoryStream ms = new MemoryStream((byte[])house[8]);
+            MemoryStream ms = new MemoryStream(house[9] as byte[]);
             BitmapImage bimg = new BitmapImage();
             bimg.SetSource(ms);
             imviewer.Source = bimg;
