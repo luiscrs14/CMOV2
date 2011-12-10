@@ -20,13 +20,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://172.30.20.211:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="ddd33bd2-d73d-4943-99fa-6dde4ca2d1eb" SourceId="1" SourceUrl="http://172.30.20.211:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="4ff06009-44ab-4d30-834a-2c739763771a" SourceId="1" SourceUrl="http://172.30.20.211:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="69459ec5-c516-494d-91fe-8009013e25c9" SourceId="1" SourceUrl="http://172.30.20.211:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="ee188e7f-849d-4dda-a764-dd32e713bc6f" SourceId="1" SourceUrl="http://172.30.20.211:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="651db681-360a-47f8-b166-ad335b54c796" SourceId="1" SourceUrl="http://localhost:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="96145d8b-1999-44c2-980c-de29fe95086e" SourceId="1" SourceUrl="http://localhost:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="679669d4-b459-4fc6-b6cd-54b521ff0843" SourceId="1" SourceUrl="http://localhost:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="c50c45c9-9ba8-4253-8f21-4db84f492e6a" SourceId="1" SourceUrl="http://localhost:8732/Design_Time_Addresses/CMOVServer/ImageService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
