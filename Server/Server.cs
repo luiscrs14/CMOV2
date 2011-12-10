@@ -18,7 +18,7 @@ public class Server {
         Application.SetCompatibleTextRenderingDefault(false);
         Application.Run(new ServerGUI());
         //Console.ReadLine();
-        // host.Close();
+         host.Close();
         }
 
   

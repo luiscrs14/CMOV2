@@ -25,10 +25,12 @@ namespace PhoneImage {
     public MainPage() {
       InitializeComponent();
       client = new ImageServiceClient();
-      client.DoWorkCompleted += WorkCompletedHandler;
-      client.GetImageCompleted += OnGetImageCompleted;
-      client.DoWorkAsync();
-      client.GetImageAsync(0);
+      //client.DoWorkCompleted += WorkCompletedHandler;
+      //client.GetImageCompleted += OnGetImageCompleted;
+      client.GetHouseCompleted += OnGetHouseCompleted;
+      //client.DoWorkAsync();
+      //client.GetImageAsync(0);
+      
      
       
       string channelName = "ChannelName";
@@ -48,6 +50,7 @@ namespace PhoneImage {
       }
       client.SetUrlAsync(channelUri);
       MessageBox.Show("url: " + channelUri);
+      client.GetHouseAsync(-1);
     }
 
     public void WorkCompletedHandler(object sender, DoWorkCompletedEventArgs e) {
@@ -60,6 +63,34 @@ namespace PhoneImage {
       BitmapImage bimg = new BitmapImage();
       bimg.SetSource(ms);
       imviewer.Source = bimg;
+    }
+
+    void OnGetHouseCompleted(object sender, GetHouseCompletedEventArgs e)
+    {
+        MessageBox.Show("house: ");
+        if (e.Result != null)
+        {
+            object[] house = e.Result.ToArray<object>();
+            for(int i=0;i<house.Length;i++)
+                MessageBox.Show("house: " + house[i]);
+            cityTB.Text = house[2].ToString();
+
+
+            MemoryStream ms = new MemoryStream((byte[])house[8]);
+            BitmapImage bimg = new BitmapImage();
+            bimg.SetSource(ms);
+            imviewer.Source = bimg;
+            
+        }
+        else
+        {
+            ;//meter no ecrã alguma informação de que nao existem casas para mostrar
+        }
+       
+       /*MemoryStream ms = new MemoryStream(img);
+        BitmapImage bimg = new BitmapImage();
+        bimg.SetSource(ms);
+        imviewer.Source = bimg;*/
     }
 
    /* private void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {

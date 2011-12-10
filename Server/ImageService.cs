@@ -15,6 +15,7 @@ namespace CMOVServer {
     static Uri url;
     static int index = 0;
     Database1DataSet dataset = new Database1DataSet();
+    Database1DataSetTableAdapters.PropertiesTableAdapter propTA = new Database1DataSetTableAdapters.PropertiesTableAdapter();
     public double DoWork() {
       Console.WriteLine("DoWork() called");
       return 3.14159;
@@ -64,11 +65,29 @@ namespace CMOVServer {
 
     public object[] GetHouse(int id)
     {
-        Console.WriteLine("GetHouse(" + index + ") called");
-        if (id == 0)
+        Console.WriteLine("GetHouse(index: " + index + " id: " + id+ ") called");
+        propTA.Fill(dataset.Properties);
+        if (dataset.Properties.Rows.Count == 0)
+        {
+            Console.WriteLine("No cols");
+            return null;
+        }
+        if (id == -1){
+            Console.WriteLine(dataset.Properties.Rows[0].ItemArray);
+            object[] cenas = new object[dataset.Properties.Rows[0].ItemArray.Length+1];
+            dataset.Properties.Rows[0].ItemArray.CopyTo(cenas,0);
+            cenas[dataset.Properties.Rows[0].ItemArray.Length] = File.ReadAllBytes(cenas[dataset.Properties.Rows[0].ItemArray.Length-1].ToString());
+
+            return cenas;
+        }
+        if (id == 0){
+            Console.WriteLine(dataset.Properties.Rows[index +1].ItemArray);
             return dataset.Properties.Rows[++index].ItemArray;
-        else
+        }
+        else{
+            Console.WriteLine(dataset.Properties.Rows[index -1].ItemArray);
             return dataset.Properties.Rows[--index].ItemArray;
+        }
     }
 
     internal static Uri getUrl()
@@ -107,6 +126,8 @@ namespace CMOVServer {
     public void mandavir(int type, byte[] strBytes)
     {
         Uri url = CMOVServer.ImageService.getUrl();
+        if (url == null)
+            return;
         Console.WriteLine("url: " + url);
         //byte[] strBytes = PrepareToast();// PrepareTile();
         HttpWebRequest sendNotificationRequest = (HttpWebRequest)WebRequest.Create(url);
