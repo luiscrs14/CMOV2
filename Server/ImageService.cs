@@ -12,10 +12,11 @@ using System.Data;
 
 namespace CMOVServer {
   public class ImageService : IImageService {
-    static Uri url;
+    
     static int index = 0;
     Database1DataSet dataset = new Database1DataSet();
-    Database1DataSetTableAdapters.PropertiesTableAdapter propTA = new Database1DataSetTableAdapters.PropertiesTableAdapter();
+    Database1DataSetTableAdapters.PropertiesTableAdapter propsTA = new Database1DataSetTableAdapters.PropertiesTableAdapter();
+    Database1DataSetTableAdapters.UsersTableAdapter usersTA = new Database1DataSetTableAdapters.UsersTableAdapter();
     public double DoWork() {
       Console.WriteLine("DoWork() called");
       return 3.14159;
@@ -23,16 +24,14 @@ namespace CMOVServer {
 
     public String SetUrl(Uri url1)
     {
-        Console.WriteLine("SetUrl(" + url + ") called");
-        url = url1;
-        Database1DataSetTableAdapters.UsersTableAdapter usersTA = new Database1DataSetTableAdapters.UsersTableAdapter();
-        Database1DataSetTableAdapters.PropertiesTableAdapter propsTA = new Database1DataSetTableAdapters.PropertiesTableAdapter();
-        Database1DataSet dataset = new Database1DataSet();
-       // propsTA.Insert(2, "piças", "2", "2", 2, 2, 2, "2", "2");
-        //usersTA.Insert(3);
+        Console.WriteLine("SetUrl(" + url1 + ") called");
+              
+         if (usersTA.FindUrl(url1.AbsoluteUri.ToString()) == null)
+        {
+            usersTA.Insert(url1.AbsoluteUri.ToString());
+        }
         usersTA.Update(dataset);
-        propsTA.Update(dataset);
-       // dataset.Properties.
+       
         return "URL set";
         
     }
@@ -66,7 +65,7 @@ namespace CMOVServer {
     public object[] GetHouse(int id)
     {
         Console.WriteLine("GetHouse(index: " + index + " id: " + id+ ") called");
-        propTA.Fill(dataset.Properties);
+        propsTA.Fill(dataset.Properties);
         if (dataset.Properties.Rows.Count == 0)
         {
             Console.WriteLine("No cols");
@@ -99,9 +98,14 @@ namespace CMOVServer {
         }
     }
 
-    internal static Uri getUrl()
+    public Uri[] getUrls()
     {
-        return url;
+        
+        if (usersTA.GetData().Count != 0)
+        {
+            usersTA.GetData().urlColumn.Container.ToString();
+        }
+        return null;
     }
 
     public byte[] PrepareTile(int count, string text, String img )
@@ -132,14 +136,14 @@ namespace CMOVServer {
                         , new XElement(wp + "Text2", message)))).ToString());
     }
 
-    public void mandavir(int type, byte[] strBytes)
+    public void SendNotfication(int type, byte[] strBytes)
     {
-        Uri url = CMOVServer.ImageService.getUrl();
-        if (url == null)
+        Uri[] urls = getUrls();
+        if (urls == null)
             return;
-        Console.WriteLine("url: " + url);
+        Console.WriteLine("url: " + urls[0]);
         //byte[] strBytes = PrepareToast();// PrepareTile();
-        HttpWebRequest sendNotificationRequest = (HttpWebRequest)WebRequest.Create(url);
+        HttpWebRequest sendNotificationRequest = (HttpWebRequest)WebRequest.Create(urls[0]);
         sendNotificationRequest.Method = "POST";
         sendNotificationRequest.Headers = new WebHeaderCollection();
         sendNotificationRequest.Headers["X-MessageID"] = Guid.NewGuid().ToString();

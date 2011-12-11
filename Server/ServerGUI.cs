@@ -53,13 +53,15 @@ namespace CMOVServer
             
             ImageService imgserv = new ImageService();
             byte[] notification = imgserv.PrepareTile(changes, "New notification",imageUrl);
-            imgserv.mandavir(1, notification);
+            imgserv.SendNotfication(1, notification);
             Console.WriteLine("changes: " + changes);
 
         }
 
         private void ServerGUI_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'database1DataSet.Users_Properties' table. You can move, or remove it, as needed.
+            this.users_PropertiesTableAdapter.Fill(this.database1DataSet.Users_Properties);
             // TODO: This line of code loads data into the 'database1DataSet.Users' table. You can move, or remove it, as needed.
             this.usersTableAdapter.Fill(this.database1DataSet.Users);
             // TODO: This line of code loads data into the 'database1DataSet.Properties' table. You can move, or remove it, as needed.
