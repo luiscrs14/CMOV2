@@ -264,21 +264,6 @@ namespace CMOVServer {
             base.Tables.Add(this.tableUsers);
             this.tableProperties = new PropertiesDataTable();
             base.Tables.Add(this.tableProperties);
-            global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_Users_Users_Properties", new global::System.Data.DataColumn[] {
-                        this.tableUsers.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableUsers_Properties.idUColumn});
-            this.tableUsers_Properties.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_Properties_Users_Properties", new global::System.Data.DataColumn[] {
-                        this.tableProperties.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableUsers_Properties.idPColumn});
-            this.tableUsers_Properties.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             this.relationFK_Users_Users_Properties = new global::System.Data.DataRelation("FK_Users_Users_Properties", new global::System.Data.DataColumn[] {
                         this.tableUsers.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableUsers_Properties.idUColumn}, false);

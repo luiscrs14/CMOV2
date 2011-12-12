@@ -26,12 +26,14 @@ namespace CMOVServer {
     {
         Console.WriteLine("SetUrl(" + url1 + ") called");
              Console.WriteLine("cenas "+ usersTA.FindUrl(url1.AbsoluteUri.ToString()));
-         if (url1.AbsoluteUri != "" && usersTA.FindUrl(url1.AbsoluteUri.ToString()) == null)
+         if (url1 != null && usersTA.FindUrl(url1.AbsoluteUri.ToString()) == null)
         {
             Console.WriteLine("Entrou aqui");
             usersTA.Insert(url1.AbsoluteUri.ToString());
         }
         usersTA.Update(dataset);
+
+        //acrescentar todas as propriedades a este url
        
         return "URL set";
         
@@ -112,8 +114,6 @@ namespace CMOVServer {
 
             }
             return urls.ToArray<Uri>();
-            //  usersTA.GetData().urlColumn.Container.ToString();
-            //  Console.WriteLine(usersTA.GetData().urlColumn.Container.ToString());
         }
         else
             Console.WriteLine("Tenho 0 urls");
