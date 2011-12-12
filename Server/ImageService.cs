@@ -17,6 +17,7 @@ namespace CMOVServer {
     Database1DataSet dataset = new Database1DataSet();
     Database1DataSetTableAdapters.PropertiesTableAdapter propsTA = new Database1DataSetTableAdapters.PropertiesTableAdapter();
     Database1DataSetTableAdapters.UsersTableAdapter usersTA = new Database1DataSetTableAdapters.UsersTableAdapter();
+    Database1DataSetTableAdapters.Users_PropertiesTableAdapter upTA = new Database1DataSetTableAdapters.Users_PropertiesTableAdapter();
     public double DoWork() {
       Console.WriteLine("DoWork() called");
       return 3.14159;
@@ -29,12 +30,16 @@ namespace CMOVServer {
          if (url1 != null && usersTA.FindUrl(url1.AbsoluteUri.ToString()) == null)
         {
             Console.WriteLine("cenas " + usersTA.FindUrl(url1.AbsoluteUri.ToString()));
-            Console.WriteLine("Entrou aqui");
             usersTA.Insert(url1.AbsoluteUri.ToString());
         }
         usersTA.Update(dataset);
-
-        //acrescentar todas as propriedades a este url
+        propsTA.Fill(dataset.Properties);
+        int id = (int)usersTA.GetIdByUrl(url1.AbsoluteUri);
+        foreach (DataRow row in dataset.Properties.Rows)
+        {
+            upTA.Insert(id, Convert.ToInt32(row["id"]));
+        }
+        upTA.Update(dataset.Users_Properties);
        
         return "URL set";
         

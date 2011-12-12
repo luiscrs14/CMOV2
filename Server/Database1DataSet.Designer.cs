@@ -30,9 +30,9 @@ namespace CMOVServer {
         
         private PropertiesDataTable tableProperties;
         
-        private global::System.Data.DataRelation relationFK_Properties_Users_Properties;
-        
         private global::System.Data.DataRelation relationFK_Users_Users_Properties;
+        
+        private global::System.Data.DataRelation relationFK_Properties_Users_Properties;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -246,8 +246,8 @@ namespace CMOVServer {
                     this.tableProperties.InitVars();
                 }
             }
-            this.relationFK_Properties_Users_Properties = this.Relations["FK_Properties_Users_Properties"];
             this.relationFK_Users_Users_Properties = this.Relations["FK_Users_Users_Properties"];
+            this.relationFK_Properties_Users_Properties = this.Relations["FK_Properties_Users_Properties"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -265,13 +265,6 @@ namespace CMOVServer {
             this.tableProperties = new PropertiesDataTable();
             base.Tables.Add(this.tableProperties);
             global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_Properties_Users_Properties", new global::System.Data.DataColumn[] {
-                        this.tableProperties.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableUsers_Properties.idPColumn});
-            this.tableUsers_Properties.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_Users_Users_Properties", new global::System.Data.DataColumn[] {
                         this.tableUsers.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableUsers_Properties.idUColumn});
@@ -279,14 +272,21 @@ namespace CMOVServer {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_Properties_Users_Properties = new global::System.Data.DataRelation("FK_Properties_Users_Properties", new global::System.Data.DataColumn[] {
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Properties_Users_Properties", new global::System.Data.DataColumn[] {
                         this.tableProperties.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableUsers_Properties.idPColumn}, false);
-            this.Relations.Add(this.relationFK_Properties_Users_Properties);
+                        this.tableUsers_Properties.idPColumn});
+            this.tableUsers_Properties.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             this.relationFK_Users_Users_Properties = new global::System.Data.DataRelation("FK_Users_Users_Properties", new global::System.Data.DataColumn[] {
                         this.tableUsers.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableUsers_Properties.idUColumn}, false);
             this.Relations.Add(this.relationFK_Users_Users_Properties);
+            this.relationFK_Properties_Users_Properties = new global::System.Data.DataRelation("FK_Properties_Users_Properties", new global::System.Data.DataColumn[] {
+                        this.tableProperties.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUsers_Properties.idPColumn}, false);
+            this.Relations.Add(this.relationFK_Properties_Users_Properties);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1339,23 +1339,23 @@ namespace CMOVServer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PropertiesRow PropertiesRow {
-                get {
-                    return ((PropertiesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Properties_Users_Properties"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Properties_Users_Properties"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public UsersRow UsersRow {
                 get {
                     return ((UsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Users_Users_Properties"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Users_Users_Properties"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PropertiesRow PropertiesRow {
+                get {
+                    return ((PropertiesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Properties_Users_Properties"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Properties_Users_Properties"]);
                 }
             }
         }
@@ -2040,7 +2040,7 @@ namespace CMOVServer.Database1DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id, url FROM dbo.Users";
@@ -2050,6 +2050,11 @@ namespace CMOVServer.Database1DataSetTableAdapters {
             this._commandCollection[1].CommandText = "SELECT id AS Expr1\r\nFROM     Users\r\nWHERE  (url = @url)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@url", global::System.Data.SqlDbType.NVarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, "url", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT id FROM Users\r\nWHERE (url = @url)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@url", global::System.Data.SqlDbType.NVarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, "url", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2208,6 +2213,40 @@ namespace CMOVServer.Database1DataSetTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> FindUrl(string url) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            if ((url == null)) {
+                throw new global::System.ArgumentNullException("url");
+            }
+            else {
+                command.Parameters[0].Value = ((string)(url));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<int>();
+            }
+            else {
+                return new global::System.Nullable<int>(((int)(returnValue)));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<int> GetIdByUrl(string url) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             if ((url == null)) {
                 throw new global::System.ArgumentNullException("url");
             }
