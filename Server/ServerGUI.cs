@@ -48,8 +48,12 @@ namespace CMOVServer
                 }
             }
             int changes = this.tableAdapterManager.UpdateAll(this.database1DataSet);
-            
-            foreach(DataRow row in this.database1DataSet.Users.Rows)
+
+           
+            Database1DataSetTableAdapters.UsersTableAdapter uta = new Database1DataSetTableAdapters.UsersTableAdapter();
+            this.usersTableAdapter = new Database1DataSetTableAdapters.UsersTableAdapter();
+            this.usersTableAdapter.Fill(database1DataSet.Users);
+            foreach (DataRow row in database1DataSet.Users.Rows)
             {
                 foreach(DataRow newHouse in recentChanges.Rows)
                 {
@@ -59,6 +63,8 @@ namespace CMOVServer
                     this.users_PropertiesTableAdapter.Update(this.database1DataSet.Users_Properties);
                 }
             }
+            this.users_PropertiesTableAdapter = new Database1DataSetTableAdapters.Users_PropertiesTableAdapter();
+            this.users_PropertiesTableAdapter.Fill(database1DataSet.Users_Properties);
             
             ImageService imgserv = new ImageService();
             byte[] notification = imgserv.PrepareTile(changes, "New notification",imageUrl);
