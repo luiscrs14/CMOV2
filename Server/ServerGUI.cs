@@ -24,6 +24,8 @@ namespace CMOVServer
             this.propertiesBindingSource.EndEdit();
             DataTable recentChanges = ((Database1DataSet)this.propertiesBindingSource.DataSource).Properties.GetChanges(DataRowState.Added);
             String imageUrl = "";
+            String city = "";
+            String price = "";
             if (recentChanges != null)
             {
                 for (int i = 0; i < recentChanges.Rows.Count; i++)
@@ -45,6 +47,9 @@ namespace CMOVServer
                         imageUrl = "house.png";
                     }
                     Console.WriteLine(propType);
+
+                    city = recentChanges.Rows[i]["city"].ToString();
+                    price = recentChanges.Rows[i]["price"].ToString();
                 }
             }
             int changes = this.tableAdapterManager.UpdateAll(this.database1DataSet);
@@ -67,8 +72,10 @@ namespace CMOVServer
             this.users_PropertiesTableAdapter.Fill(database1DataSet.Users_Properties);
             
             ImageService imgserv = new ImageService();
-            byte[] notification = imgserv.PrepareTile(changes, "New notification",imageUrl);
-            imgserv.SendNotfication(1, notification);
+            byte[] tile = imgserv.PrepareTile(changes, city + " " + price + "€",imageUrl);
+            byte[] toast = imgserv.PrepareToast(city, price+"€");
+            imgserv.SendNotfication(1, tile);
+            imgserv.SendNotfication(2, toast);
             Console.WriteLine("changes: " + changes);
 
         }
