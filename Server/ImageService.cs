@@ -26,12 +26,14 @@ namespace CMOVServer {
     public String SetUrl(Uri url1)
     {
         Console.WriteLine("SetUrl(" + url1 + ") called");
-       
-         if (url1 != null && usersTA.FindUrl(url1.AbsoluteUri.ToString()) == null)
+
+        if (url1 != null && usersTA.FindUrl(url1.AbsoluteUri.ToString()) == null)
         {
             Console.WriteLine("cenas " + usersTA.FindUrl(url1.AbsoluteUri.ToString()));
             usersTA.Insert(url1.AbsoluteUri.ToString());
         }
+        else
+            return "";
         usersTA.Update(dataset);
         propsTA.Fill(dataset.Properties);
         int id = (int)usersTA.GetIdByUrl(url1.AbsoluteUri);
