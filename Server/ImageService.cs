@@ -25,9 +25,10 @@ namespace CMOVServer {
     public String SetUrl(Uri url1)
     {
         Console.WriteLine("SetUrl(" + url1 + ") called");
-             Console.WriteLine("cenas "+ usersTA.FindUrl(url1.AbsoluteUri.ToString()));
+             
          if (url1 != null && usersTA.FindUrl(url1.AbsoluteUri.ToString()) == null)
         {
+            Console.WriteLine("cenas " + usersTA.FindUrl(url1.AbsoluteUri.ToString()));
             Console.WriteLine("Entrou aqui");
             usersTA.Insert(url1.AbsoluteUri.ToString());
         }

@@ -30,9 +30,9 @@ namespace CMOVServer {
         
         private PropertiesDataTable tableProperties;
         
-        private global::System.Data.DataRelation relationFK_Users_Users_Properties;
-        
         private global::System.Data.DataRelation relationFK_Properties_Users_Properties;
+        
+        private global::System.Data.DataRelation relationFK_Users_Users_Properties;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -246,8 +246,8 @@ namespace CMOVServer {
                     this.tableProperties.InitVars();
                 }
             }
-            this.relationFK_Users_Users_Properties = this.Relations["FK_Users_Users_Properties"];
             this.relationFK_Properties_Users_Properties = this.Relations["FK_Properties_Users_Properties"];
+            this.relationFK_Users_Users_Properties = this.Relations["FK_Users_Users_Properties"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -264,14 +264,29 @@ namespace CMOVServer {
             base.Tables.Add(this.tableUsers);
             this.tableProperties = new PropertiesDataTable();
             base.Tables.Add(this.tableProperties);
-            this.relationFK_Users_Users_Properties = new global::System.Data.DataRelation("FK_Users_Users_Properties", new global::System.Data.DataColumn[] {
+            global::System.Data.ForeignKeyConstraint fkc;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Properties_Users_Properties", new global::System.Data.DataColumn[] {
+                        this.tableProperties.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUsers_Properties.idPColumn});
+            this.tableUsers_Properties.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Users_Users_Properties", new global::System.Data.DataColumn[] {
                         this.tableUsers.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableUsers_Properties.idUColumn}, false);
-            this.Relations.Add(this.relationFK_Users_Users_Properties);
+                        this.tableUsers_Properties.idUColumn});
+            this.tableUsers_Properties.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             this.relationFK_Properties_Users_Properties = new global::System.Data.DataRelation("FK_Properties_Users_Properties", new global::System.Data.DataColumn[] {
                         this.tableProperties.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableUsers_Properties.idPColumn}, false);
             this.Relations.Add(this.relationFK_Properties_Users_Properties);
+            this.relationFK_Users_Users_Properties = new global::System.Data.DataRelation("FK_Users_Users_Properties", new global::System.Data.DataColumn[] {
+                        this.tableUsers.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUsers_Properties.idUColumn}, false);
+            this.Relations.Add(this.relationFK_Users_Users_Properties);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1324,23 +1339,23 @@ namespace CMOVServer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UsersRow UsersRow {
-                get {
-                    return ((UsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Users_Users_Properties"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Users_Users_Properties"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PropertiesRow PropertiesRow {
                 get {
                     return ((PropertiesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Properties_Users_Properties"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Properties_Users_Properties"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UsersRow UsersRow {
+                get {
+                    return ((UsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Users_Users_Properties"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Users_Users_Properties"]);
                 }
             }
         }
