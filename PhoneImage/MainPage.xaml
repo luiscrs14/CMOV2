@@ -29,11 +29,13 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Image Height="400" HorizontalAlignment="Center" Margin="0,6,0,0" Name="imviewer" Stretch="Fill" VerticalAlignment="Top" Width="400" />
-            <TextBlock Height="40" HorizontalAlignment="Left" Margin="28,413,0,0" Name="cityTB" Text="City:" VerticalAlignment="Top" Width="460" />
-            <TextBlock Height="40" HorizontalAlignment="Left" Margin="28,460,0,0" Name="priceTB" Text="Price:" VerticalAlignment="Top" Width="460" />
-            <Button Content="Back" Height="72" HorizontalAlignment="Left" IsEnabled="False" Margin="18,618,0,0" Name="button1" VerticalAlignment="Top" Width="130" />
+            <TextBlock Height="40" HorizontalAlignment="Left" Margin="28,413,0,0" Name="cityLabel" Text="City:" VerticalAlignment="Top" Width="52" />
+            <TextBlock Height="40" HorizontalAlignment="Left" Margin="28,460,0,0" Name="priceLabel" Text="Price:" VerticalAlignment="Top" Width="52" />
+            <Button Content="Back" Height="72" HorizontalAlignment="Left" IsEnabled="False" Margin="18,618,0,0" Name="button1" VerticalAlignment="Top" Width="130" Click="button1_Click" />
             <Button Content="Next" Height="72" HorizontalAlignment="Right" Margin="0,618,28,0" Name="button2" VerticalAlignment="Top" Width="130" Click="button2_Click" />
-            <Button Content="Discard" Height="72" HorizontalAlignment="Center" Margin="153,618,163,0" Name="button3" VerticalAlignment="Top" Width="140" />
+            <Button Content="Discard" Height="72" HorizontalAlignment="Center" Margin="153,618,163,0" Name="button3" VerticalAlignment="Top" Width="140" Click="button3_Click" />
+            <TextBlock Height="40" HorizontalAlignment="Left" Margin="86,413,0,0" Name="cityTB" Text="City Name" VerticalAlignment="Top" Width="342" />
+            <TextBlock Height="40" HorizontalAlignment="Left" Margin="86,460,0,0" Name="priceTB" Text="Price Number" VerticalAlignment="Top" Width="342" />
         </Grid>
     </Grid>
  

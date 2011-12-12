@@ -22,6 +22,7 @@ namespace PhoneImage {
     ImageServiceClient client;
     Uri channelUri;
     HttpNotificationChannel httpChannel = null;
+    int id = 0;
 
     public MainPage() {
       InitializeComponent();
@@ -70,38 +71,29 @@ namespace PhoneImage {
 
     void OnGetHouseCompleted(object sender, GetHouseCompletedEventArgs e)
     {
-        MessageBox.Show("house: " + e.Result.ToArray<object>().Length);
         if (e.Result != null)
         {
-            MessageBox.Show("house: " + e.Result.ToArray<object>().Length);
             object[] house = e.Result.ToArray<object>();
-           /* for(int i=0;i<house.Length;i++)
-                MessageBox.Show("house: " + house[i]);*/
-            cityTB.Text = house[2].ToString();
+            //set text field information
+            cityTB.Text = house[3].ToString();
+            priceTB.Text = house[6].ToString() + " €";
 
-            MemoryStream ms = new MemoryStream(house[9] as byte[]);
+            //show image
+            MemoryStream ms = new MemoryStream(house[8] as byte[]);
             BitmapImage bimg = new BitmapImage();
             bimg.SetSource(ms);
             imviewer.Source = bimg;
-            
+
+            if (house[9].ToString() == "1")
+                button2.IsEnabled = false;
         }
         else
         {
-            ;//meter no ecrã alguma informação de que nao existem casas para mostrar
+            MessageBox.Show("There's no properties for purchase");
+            this.NavigationService.GoBack();
+
         }
-       
-       /*MemoryStream ms = new MemoryStream(img);
-        BitmapImage bimg = new BitmapImage();
-        bimg.SetSource(ms);
-        imviewer.Source = bimg;*/
     }
-
-   /* private void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-      int id = Convert.ToInt32(slider1.Value);
-      client.GetImageAsync(id);
-      
-    }*/
-
 
     void OnChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
     {
@@ -141,11 +133,32 @@ namespace PhoneImage {
         Debug.WriteLine(notificationText);
     }
 
+    private void button1_Click(object sender, RoutedEventArgs e)
+    {
+        id--;
+        if(id==0)
+            button1.IsEnabled = false;
+
+        button2.IsEnabled = true;
+
+        //pede a imagem anterior
+        client.GetHouseAsync(1);
+    }
+
     private void button2_Click(object sender, RoutedEventArgs e)
     {
+        id++;
         button1.IsEnabled = true;
+
         //pede a próxima imagem
-        //client.GetImageAsync(id);
+        client.GetHouseAsync(0);
+    }
+
+    private void button3_Click(object sender, RoutedEventArgs e)
+    {
+        //descartar propriedade em visualizacao
+        //apagando a entrada user,prop na tabela de relacao
+        //passar a visualizacao da proxima casa
     }
   }
 }
