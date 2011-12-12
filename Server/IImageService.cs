@@ -20,5 +20,11 @@ namespace CMOVServer {
 
     [OperationContract]
     String SetUrl(Uri url);
+
+    [OperationContract]
+    void reset(Uri uri);
+
+    [OperationContract]
+    void discard(Uri url, int propId);
   }
 }

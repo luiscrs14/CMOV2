@@ -12,6 +12,7 @@ public class Server {
     {
         ServiceHost host = new ServiceHost(typeof(ImageService));
         host.Open();
+
         Console.WriteLine("Server ready for requests. Press <CR> to terminate.");  
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);

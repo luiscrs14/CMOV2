@@ -26,7 +26,7 @@ namespace CMOVServer {
     public String SetUrl(Uri url1)
     {
         Console.WriteLine("SetUrl(" + url1 + ") called");
-             
+       
          if (url1 != null && usersTA.FindUrl(url1.AbsoluteUri.ToString()) == null)
         {
             Console.WriteLine("cenas " + usersTA.FindUrl(url1.AbsoluteUri.ToString()));
@@ -40,10 +40,37 @@ namespace CMOVServer {
             upTA.Insert(id, Convert.ToInt32(row["id"]));
         }
         upTA.Update(dataset.Users_Properties);
+        
        
         return "URL set";
         
     }
+
+    public void reset(Uri url)
+    {
+        int id= (int)usersTA.GetIdByUrl(url.AbsoluteUri.ToString());
+        //se isto nao funcionar, por nao poder fazer overwrite,descomentar isto..
+       /* upTA.GetDataByUserId(id);
+        foreach (DataRow row in upTA.GetDataByUserId(id))
+        {
+            row.Delete();
+        }*/
+        foreach (DataRow row in dataset.Properties.Rows)
+        {
+            upTA.Insert(id, Convert.ToInt32(row["id"]));
+        }
+        upTA.Update(dataset.Users_Properties);
+        Console.WriteLine("Reset done to user " + id);
+    }
+
+      public void discard(Uri url,int propId)
+      {
+          upTA.GetDataUrlAndId((int)usersTA.GetIdByUrl(url.AbsoluteUri.ToString()), propId);
+          foreach(DataRow row in upTA.GetDataUrlAndId((int)usersTA.GetIdByUrl(url.AbsoluteUri.ToString()), propId)){
+              row.Delete();
+          }
+          upTA.Update(dataset.Users_Properties);
+      }
 
     public byte[] GetImage(int id) {
       string fimage;
