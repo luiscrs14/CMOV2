@@ -112,7 +112,11 @@ namespace CMOVServer {
             object[] auxArray = new object[dataset.Properties.Rows[0].ItemArray.Length+1];
             dataset.Properties.Rows[0].ItemArray.CopyTo(auxArray, 0);
             //adiciona a imagem ao array
-            auxArray[dataset.Properties.Rows[0].ItemArray.Length] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[0].ItemArray.Length - 1].ToString());
+            auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1].ToString());
+            if (index + 1 == dataset.Properties.Rows.Count)
+                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 1;
+            else
+                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 0;
 
             return auxArray;
         }
@@ -121,7 +125,11 @@ namespace CMOVServer {
             object[] auxArray = new object[dataset.Properties.Rows[++index].ItemArray.Length + 1];
             dataset.Properties.Rows[index].ItemArray.CopyTo(auxArray, 0);
 
-            auxArray[dataset.Properties.Rows[index].ItemArray.Length] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1].ToString());
+            auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1].ToString());
+            if (index + 1 == dataset.Properties.Rows.Count)
+                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 1;
+            else
+                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 0;
             return auxArray;
         }
         else{
@@ -129,7 +137,11 @@ namespace CMOVServer {
             object[] auxArray = new object[dataset.Properties.Rows[--index].ItemArray.Length + 1];
             dataset.Properties.Rows[index].ItemArray.CopyTo(auxArray, 0);
 
-            auxArray[dataset.Properties.Rows[index].ItemArray.Length] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1].ToString());
+            auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1].ToString());
+            if (index + 1 == dataset.Properties.Rows.Count)
+                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 1;
+            else
+                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 0;
             return auxArray;
         }
     }

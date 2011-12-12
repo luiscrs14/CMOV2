@@ -38,6 +38,16 @@ namespace PhoneImage.ImageReference {
         System.IAsyncResult BeginSetUrl(System.Uri url, System.AsyncCallback callback, object asyncState);
         
         string EndSetUrl(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImageService/reset", ReplyAction="http://tempuri.org/IImageService/resetResponse")]
+        System.IAsyncResult Beginreset(System.Uri uri, System.AsyncCallback callback, object asyncState);
+        
+        void Endreset(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImageService/discard", ReplyAction="http://tempuri.org/IImageService/discardResponse")]
+        System.IAsyncResult Begindiscard(System.Uri url, int propId, System.AsyncCallback callback, object asyncState);
+        
+        void Enddiscard(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -148,6 +158,18 @@ namespace PhoneImage.ImageReference {
         
         private System.Threading.SendOrPostCallback onSetUrlCompletedDelegate;
         
+        private BeginOperationDelegate onBeginresetDelegate;
+        
+        private EndOperationDelegate onEndresetDelegate;
+        
+        private System.Threading.SendOrPostCallback onresetCompletedDelegate;
+        
+        private BeginOperationDelegate onBegindiscardDelegate;
+        
+        private EndOperationDelegate onEnddiscardDelegate;
+        
+        private System.Threading.SendOrPostCallback ondiscardCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -208,6 +230,10 @@ namespace PhoneImage.ImageReference {
         public event System.EventHandler<GetHouseCompletedEventArgs> GetHouseCompleted;
         
         public event System.EventHandler<SetUrlCompletedEventArgs> SetUrlCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> resetCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> discardCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -395,6 +421,98 @@ namespace PhoneImage.ImageReference {
                         url}, this.onEndSetUrlDelegate, this.onSetUrlCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PhoneImage.ImageReference.IImageService.Beginreset(System.Uri uri, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.Beginreset(uri, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void PhoneImage.ImageReference.IImageService.Endreset(System.IAsyncResult result) {
+            base.Channel.Endreset(result);
+        }
+        
+        private System.IAsyncResult OnBeginreset(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Uri uri = ((System.Uri)(inValues[0]));
+            return ((PhoneImage.ImageReference.IImageService)(this)).Beginreset(uri, callback, asyncState);
+        }
+        
+        private object[] OnEndreset(System.IAsyncResult result) {
+            ((PhoneImage.ImageReference.IImageService)(this)).Endreset(result);
+            return null;
+        }
+        
+        private void OnresetCompleted(object state) {
+            if ((this.resetCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.resetCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void resetAsync(System.Uri uri) {
+            this.resetAsync(uri, null);
+        }
+        
+        public void resetAsync(System.Uri uri, object userState) {
+            if ((this.onBeginresetDelegate == null)) {
+                this.onBeginresetDelegate = new BeginOperationDelegate(this.OnBeginreset);
+            }
+            if ((this.onEndresetDelegate == null)) {
+                this.onEndresetDelegate = new EndOperationDelegate(this.OnEndreset);
+            }
+            if ((this.onresetCompletedDelegate == null)) {
+                this.onresetCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnresetCompleted);
+            }
+            base.InvokeAsync(this.onBeginresetDelegate, new object[] {
+                        uri}, this.onEndresetDelegate, this.onresetCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PhoneImage.ImageReference.IImageService.Begindiscard(System.Uri url, int propId, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.Begindiscard(url, propId, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void PhoneImage.ImageReference.IImageService.Enddiscard(System.IAsyncResult result) {
+            base.Channel.Enddiscard(result);
+        }
+        
+        private System.IAsyncResult OnBegindiscard(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Uri url = ((System.Uri)(inValues[0]));
+            int propId = ((int)(inValues[1]));
+            return ((PhoneImage.ImageReference.IImageService)(this)).Begindiscard(url, propId, callback, asyncState);
+        }
+        
+        private object[] OnEnddiscard(System.IAsyncResult result) {
+            ((PhoneImage.ImageReference.IImageService)(this)).Enddiscard(result);
+            return null;
+        }
+        
+        private void OndiscardCompleted(object state) {
+            if ((this.discardCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.discardCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void discardAsync(System.Uri url, int propId) {
+            this.discardAsync(url, propId, null);
+        }
+        
+        public void discardAsync(System.Uri url, int propId, object userState) {
+            if ((this.onBegindiscardDelegate == null)) {
+                this.onBegindiscardDelegate = new BeginOperationDelegate(this.OnBegindiscard);
+            }
+            if ((this.onEnddiscardDelegate == null)) {
+                this.onEnddiscardDelegate = new EndOperationDelegate(this.OnEnddiscard);
+            }
+            if ((this.ondiscardCompletedDelegate == null)) {
+                this.ondiscardCompletedDelegate = new System.Threading.SendOrPostCallback(this.OndiscardCompleted);
+            }
+            base.InvokeAsync(this.onBegindiscardDelegate, new object[] {
+                        url,
+                        propId}, this.onEnddiscardDelegate, this.ondiscardCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -520,6 +638,31 @@ namespace PhoneImage.ImageReference {
                 object[] _args = new object[0];
                 string _result = ((string)(base.EndInvoke("SetUrl", _args, result)));
                 return _result;
+            }
+            
+            public System.IAsyncResult Beginreset(System.Uri uri, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = uri;
+                System.IAsyncResult _result = base.BeginInvoke("reset", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void Endreset(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("reset", _args, result);
+            }
+            
+            public System.IAsyncResult Begindiscard(System.Uri url, int propId, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = url;
+                _args[1] = propId;
+                System.IAsyncResult _result = base.BeginInvoke("discard", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void Enddiscard(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("discard", _args, result);
             }
         }
     }

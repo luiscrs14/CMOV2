@@ -31,6 +31,18 @@
   <wsdl:message name="IImageService_SetUrl_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetUrlResponse" />
   </wsdl:message>
+  <wsdl:message name="IImageService_reset_InputMessage">
+    <wsdl:part name="parameters" element="tns:reset" />
+  </wsdl:message>
+  <wsdl:message name="IImageService_reset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:resetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IImageService_discard_InputMessage">
+    <wsdl:part name="parameters" element="tns:discard" />
+  </wsdl:message>
+  <wsdl:message name="IImageService_discard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:discardResponse" />
+  </wsdl:message>
   <wsdl:portType name="IImageService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/IImageService/DoWork" message="tns:IImageService_DoWork_InputMessage" />
@@ -47,6 +59,14 @@
     <wsdl:operation name="SetUrl">
       <wsdl:input wsaw:Action="http://tempuri.org/IImageService/SetUrl" message="tns:IImageService_SetUrl_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IImageService/SetUrlResponse" message="tns:IImageService_SetUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="reset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImageService/reset" message="tns:IImageService_reset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImageService/resetResponse" message="tns:IImageService_reset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="discard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImageService/discard" message="tns:IImageService_discard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImageService/discardResponse" message="tns:IImageService_discard_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ImageEndpoint" type="tns:IImageService">
@@ -80,6 +100,24 @@
     </wsdl:operation>
     <wsdl:operation name="SetUrl">
       <soap:operation soapAction="http://tempuri.org/IImageService/SetUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reset">
+      <soap:operation soapAction="http://tempuri.org/IImageService/reset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="discard">
+      <soap:operation soapAction="http://tempuri.org/IImageService/discard" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
