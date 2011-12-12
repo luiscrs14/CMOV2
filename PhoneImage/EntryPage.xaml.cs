@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 
 namespace PhoneImage
 {
@@ -18,6 +19,16 @@ namespace PhoneImage
         public EntryPage()
         {
             InitializeComponent();
+            StandardTileData sd = new StandardTileData
+            {
+                Title = "Property Viewer",
+                BackgroundImage = new Uri("Background.png", UriKind.Relative),
+                Count = 0
+            };
+            
+            ShellTile st = ShellTile.ActiveTiles.ElementAt(0);
+            MessageBox.Show(ShellTile.ActiveTiles.Count().ToString());
+            st.Update(sd);
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

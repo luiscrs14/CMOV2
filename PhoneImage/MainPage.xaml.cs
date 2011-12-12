@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using Microsoft.Phone.Notification;
 using System.Diagnostics;
+using Microsoft.Phone.Shell;
 
 namespace PhoneImage {
   public partial class MainPage : PhoneApplicationPage {
@@ -30,6 +31,8 @@ namespace PhoneImage {
       client.GetHouseCompleted += OnGetHouseCompleted;
       //client.DoWorkAsync();
       //client.GetImageAsync(0);
+      
+        
       
      
       
@@ -70,6 +73,7 @@ namespace PhoneImage {
         MessageBox.Show("house: " + e.Result.ToArray<object>().Length);
         if (e.Result != null)
         {
+            MessageBox.Show("house: " + e.Result.ToArray<object>().Length);
             object[] house = e.Result.ToArray<object>();
            /* for(int i=0;i<house.Length;i++)
                 MessageBox.Show("house: " + house[i]);*/
