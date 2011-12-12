@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="C5XrYg9/TT0YaZhe+xK8R87Dw/0=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="/rSbssQJnGpExLAn9DlughstgDw=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="ImageEndpoint">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="ImageEndpoint" contract="ImageReference.IImageService" bindingType="basicHttpBinding" address="http://172.30.30.246:8732/Design_Time_Addresses/CMOVServer/ImageService/" bindingConfiguration="ImageEndpoint">
+    <endpoint name="ImageEndpoint" contract="ImageReference.IImageService" bindingType="basicHttpBinding" address="http://localhost:8732/Design_Time_Addresses/CMOVServer/ImageService/" bindingConfiguration="ImageEndpoint">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://172.30.30.246:8732/Design_Time_Addresses/CMOVServer/ImageService/</serializedValue>
+          <serializedValue>http://localhost:8732/Design_Time_Addresses/CMOVServer/ImageService/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

@@ -25,9 +25,10 @@ namespace CMOVServer {
     public String SetUrl(Uri url1)
     {
         Console.WriteLine("SetUrl(" + url1 + ") called");
-              
-         if (usersTA.FindUrl(url1.AbsoluteUri.ToString()) == null)
+             Console.WriteLine("cenas "+ usersTA.FindUrl(url1.AbsoluteUri.ToString()));
+         if (url1.AbsoluteUri != "" && usersTA.FindUrl(url1.AbsoluteUri.ToString()) == null)
         {
+            Console.WriteLine("Entrou aqui");
             usersTA.Insert(url1.AbsoluteUri.ToString());
         }
         usersTA.Update(dataset);
@@ -68,7 +69,7 @@ namespace CMOVServer {
         propsTA.Fill(dataset.Properties);
         if (dataset.Properties.Rows.Count == 0)
         {
-            Console.WriteLine("No cols");
+            Console.WriteLine("No cols in get house");
             return null;
         }
         if (id == -1){
@@ -100,11 +101,22 @@ namespace CMOVServer {
 
     public Uri[] getUrls()
     {
-        
+
         if (usersTA.GetData().Count != 0)
         {
-            usersTA.GetData().urlColumn.Container.ToString();
+            List<Uri> urls = new List<Uri>(usersTA.GetData().Count);
+            foreach (DataRow myRow in usersTA.GetData())
+            {
+                Console.WriteLine(myRow["url"]);
+                urls.Add(new Uri(myRow["url"].ToString()));
+
+            }
+            return urls.ToArray<Uri>();
+            //  usersTA.GetData().urlColumn.Container.ToString();
+            //  Console.WriteLine(usersTA.GetData().urlColumn.Container.ToString());
         }
+        else
+            Console.WriteLine("Tenho 0 urls");
         return null;
     }
 
@@ -141,42 +153,45 @@ namespace CMOVServer {
         Uri[] urls = getUrls();
         if (urls == null)
             return;
-        Console.WriteLine("url: " + urls[0]);
-        //byte[] strBytes = PrepareToast();// PrepareTile();
-        HttpWebRequest sendNotificationRequest = (HttpWebRequest)WebRequest.Create(urls[0]);
-        sendNotificationRequest.Method = "POST";
-        sendNotificationRequest.Headers = new WebHeaderCollection();
-        sendNotificationRequest.Headers["X-MessageID"] = Guid.NewGuid().ToString();
-        if (type == 1)
+        foreach (Uri url in urls)
         {
-            sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "token");
-            sendNotificationRequest.Headers.Add("X-NotificationClass", "1");
-            sendNotificationRequest.ContentType = "text/xml";
-        }
-        else if (type == 2)
-        {
-            sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "toast");
-            sendNotificationRequest.Headers.Add("X-NotificationClass", "2");
-            sendNotificationRequest.ContentType = "text/xml";
-        }
-        else
-        {
-            sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "nonexistent");
-            sendNotificationRequest.Headers.Add("X-NotificationClass", "3");
-            sendNotificationRequest.ContentType = "nonexist";
-        }
+            Console.WriteLine("url: " + url);
+            //byte[] strBytes = PrepareToast();// PrepareTile();
+            HttpWebRequest sendNotificationRequest = (HttpWebRequest)WebRequest.Create(url);
+            sendNotificationRequest.Method = "POST";
+            sendNotificationRequest.Headers = new WebHeaderCollection();
+            sendNotificationRequest.Headers["X-MessageID"] = Guid.NewGuid().ToString();
+            if (type == 1)
+            {
+                sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "token");
+                sendNotificationRequest.Headers.Add("X-NotificationClass", "1");
+                sendNotificationRequest.ContentType = "text/xml";
+            }
+            else if (type == 2)
+            {
+                sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "toast");
+                sendNotificationRequest.Headers.Add("X-NotificationClass", "2");
+                sendNotificationRequest.ContentType = "text/xml";
+            }
+            else
+            {
+                sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "nonexistent");
+                sendNotificationRequest.Headers.Add("X-NotificationClass", "3");
+                sendNotificationRequest.ContentType = "nonexist";
+            }
 
-        sendNotificationRequest.ContentLength = strBytes.Length;
-        using (Stream requestStream = sendNotificationRequest.GetRequestStream())
-        {
-            requestStream.Write(strBytes, 0, strBytes.Length);
-        }
-        HttpWebResponse response = (HttpWebResponse)sendNotificationRequest.GetResponse();
-        string notificationStatus = response.Headers["X-NotificationStatus"];
-        string deviceConnectionStatus = response.Headers["X-DeviceConnectionStatus"];
-        string notificationChannelStatus = response.Headers["X-SubscriptionStatus"];
+            sendNotificationRequest.ContentLength = strBytes.Length;
+            using (Stream requestStream = sendNotificationRequest.GetRequestStream())
+            {
+                requestStream.Write(strBytes, 0, strBytes.Length);
+            }
+            HttpWebResponse response = (HttpWebResponse)sendNotificationRequest.GetResponse();
+            string notificationStatus = response.Headers["X-NotificationStatus"];
+            string deviceConnectionStatus = response.Headers["X-DeviceConnectionStatus"];
+            string notificationChannelStatus = response.Headers["X-SubscriptionStatus"];
 
-        Console.WriteLine("mandavir(" + response.StatusCode + " " + notificationChannelStatus + " " + notificationStatus + " " + deviceConnectionStatus + ") called");
+            Console.WriteLine("mandavir(" + response.StatusCode + " " + notificationChannelStatus + " " + notificationStatus + " " + deviceConnectionStatus + ") called");
+        }
     }
   }
 }
