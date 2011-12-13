@@ -46,37 +46,39 @@ namespace CMOVServer
                         
                         imageUrl = "house.png";
                     }
-                    Console.WriteLine(propType);
 
                     city = recentChanges.Rows[i]["city"].ToString();
                     price = recentChanges.Rows[i]["price"].ToString();
                 }
             }
             int changes = this.tableAdapterManager.UpdateAll(this.database1DataSet);
-
-           
-            Database1DataSetTableAdapters.UsersTableAdapter uta = new Database1DataSetTableAdapters.UsersTableAdapter();
-            this.usersTableAdapter = new Database1DataSetTableAdapters.UsersTableAdapter();
-            this.usersTableAdapter.Fill(database1DataSet.Users);
-            foreach (DataRow row in database1DataSet.Users.Rows)
+            if (changes != 0 && recentChanges != null)
             {
-                foreach(DataRow newHouse in recentChanges.Rows)
-                {
-                    int relInserted = users_PropertiesTableAdapter.Insert(Convert.ToInt32(row["id"]), Convert.ToInt32(newHouse["id"]));
-                    Console.WriteLine("Relations created: " + relInserted);
-                    this.database1DataSet.AcceptChanges();
-                    this.users_PropertiesTableAdapter.Update(this.database1DataSet.Users_Properties);
+
+                Database1DataSetTableAdapters.UsersTableAdapter uta = new Database1DataSetTableAdapters.UsersTableAdapter();
+                this.usersTableAdapter = new Database1DataSetTableAdapters.UsersTableAdapter();
+                this.usersTableAdapter.ClearBeforeFill = false;
+                this.usersTableAdapter.Fill(database1DataSet.Users);
+
+                foreach (DataRow row in database1DataSet.Users.Rows)
+                { 
+                    foreach (DataRow newHouse in recentChanges.Rows)
+                    {
+                        int relInserted = users_PropertiesTableAdapter.Insert(Convert.ToInt32(row["id"]), Convert.ToInt32(newHouse["id"]));
+                        this.database1DataSet.AcceptChanges();
+                        this.users_PropertiesTableAdapter.Update(this.database1DataSet.Users_Properties);
+                    }
                 }
+                this.users_PropertiesTableAdapter = new Database1DataSetTableAdapters.Users_PropertiesTableAdapter();
+                this.users_PropertiesTableAdapter.Fill(database1DataSet.Users_Properties);
+
+                ImageService imgserv = new ImageService();
+                byte[] tile = imgserv.PrepareTile(changes, city + " " + price + "€", imageUrl);
+                byte[] toast = imgserv.PrepareToast(city, price + "€");
+                imgserv.SendNotfication(1, tile);
+                imgserv.SendNotfication(2, toast);
+                Console.WriteLine("Changes made: " + changes);
             }
-            this.users_PropertiesTableAdapter = new Database1DataSetTableAdapters.Users_PropertiesTableAdapter();
-            this.users_PropertiesTableAdapter.Fill(database1DataSet.Users_Properties);
-            
-            ImageService imgserv = new ImageService();
-            byte[] tile = imgserv.PrepareTile(changes, city + " " + price + "€",imageUrl);
-            byte[] toast = imgserv.PrepareToast(city, price+"€");
-            imgserv.SendNotfication(1, tile);
-            imgserv.SendNotfication(2, toast);
-            Console.WriteLine("changes: " + changes);
 
         }
 

@@ -18,19 +18,9 @@ namespace PhoneImage.ImageReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ImageReference.IImageService")]
     public interface IImageService {
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImageService/DoWork", ReplyAction="http://tempuri.org/IImageService/DoWorkResponse")]
-        System.IAsyncResult BeginDoWork(System.AsyncCallback callback, object asyncState);
-        
-        double EndDoWork(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImageService/GetImage", ReplyAction="http://tempuri.org/IImageService/GetImageResponse")]
-        System.IAsyncResult BeginGetImage(int id, System.AsyncCallback callback, object asyncState);
-        
-        byte[] EndGetImage(System.IAsyncResult result);
-        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImageService/GetHouse", ReplyAction="http://tempuri.org/IImageService/GetHouseResponse")]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<object>))]
-        System.IAsyncResult BeginGetHouse(int id, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetHouse(int index, System.Uri url, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<object> EndGetHouse(System.IAsyncResult result);
         
@@ -47,49 +37,11 @@ namespace PhoneImage.ImageReference {
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImageService/discard", ReplyAction="http://tempuri.org/IImageService/discardResponse")]
         System.IAsyncResult Begindiscard(System.Uri url, int propId, System.AsyncCallback callback, object asyncState);
         
-        void Enddiscard(System.IAsyncResult result);
+        bool Enddiscard(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IImageServiceChannel : PhoneImage.ImageReference.IImageService, System.ServiceModel.IClientChannel {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class DoWorkCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public DoWorkCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public double Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((double)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetImageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public GetImageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public byte[] Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((byte[])(this.results[0]));
-            }
-        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -132,19 +84,26 @@ namespace PhoneImage.ImageReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class discardCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public discardCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ImageServiceClient : System.ServiceModel.ClientBase<PhoneImage.ImageReference.IImageService>, PhoneImage.ImageReference.IImageService {
-        
-        private BeginOperationDelegate onBeginDoWorkDelegate;
-        
-        private EndOperationDelegate onEndDoWorkDelegate;
-        
-        private System.Threading.SendOrPostCallback onDoWorkCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginGetImageDelegate;
-        
-        private EndOperationDelegate onEndGetImageDelegate;
-        
-        private System.Threading.SendOrPostCallback onGetImageCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetHouseDelegate;
         
@@ -223,115 +182,21 @@ namespace PhoneImage.ImageReference {
             }
         }
         
-        public event System.EventHandler<DoWorkCompletedEventArgs> DoWorkCompleted;
-        
-        public event System.EventHandler<GetImageCompletedEventArgs> GetImageCompleted;
-        
         public event System.EventHandler<GetHouseCompletedEventArgs> GetHouseCompleted;
         
         public event System.EventHandler<SetUrlCompletedEventArgs> SetUrlCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> resetCompleted;
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> discardCompleted;
+        public event System.EventHandler<discardCompletedEventArgs> discardCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PhoneImage.ImageReference.IImageService.BeginDoWork(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDoWork(callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        double PhoneImage.ImageReference.IImageService.EndDoWork(System.IAsyncResult result) {
-            return base.Channel.EndDoWork(result);
-        }
-        
-        private System.IAsyncResult OnBeginDoWork(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return ((PhoneImage.ImageReference.IImageService)(this)).BeginDoWork(callback, asyncState);
-        }
-        
-        private object[] OnEndDoWork(System.IAsyncResult result) {
-            double retVal = ((PhoneImage.ImageReference.IImageService)(this)).EndDoWork(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnDoWorkCompleted(object state) {
-            if ((this.DoWorkCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.DoWorkCompleted(this, new DoWorkCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void DoWorkAsync() {
-            this.DoWorkAsync(null);
-        }
-        
-        public void DoWorkAsync(object userState) {
-            if ((this.onBeginDoWorkDelegate == null)) {
-                this.onBeginDoWorkDelegate = new BeginOperationDelegate(this.OnBeginDoWork);
-            }
-            if ((this.onEndDoWorkDelegate == null)) {
-                this.onEndDoWorkDelegate = new EndOperationDelegate(this.OnEndDoWork);
-            }
-            if ((this.onDoWorkCompletedDelegate == null)) {
-                this.onDoWorkCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDoWorkCompleted);
-            }
-            base.InvokeAsync(this.onBeginDoWorkDelegate, null, this.onEndDoWorkDelegate, this.onDoWorkCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PhoneImage.ImageReference.IImageService.BeginGetImage(int id, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetImage(id, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        byte[] PhoneImage.ImageReference.IImageService.EndGetImage(System.IAsyncResult result) {
-            return base.Channel.EndGetImage(result);
-        }
-        
-        private System.IAsyncResult OnBeginGetImage(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int id = ((int)(inValues[0]));
-            return ((PhoneImage.ImageReference.IImageService)(this)).BeginGetImage(id, callback, asyncState);
-        }
-        
-        private object[] OnEndGetImage(System.IAsyncResult result) {
-            byte[] retVal = ((PhoneImage.ImageReference.IImageService)(this)).EndGetImage(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnGetImageCompleted(object state) {
-            if ((this.GetImageCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetImageCompleted(this, new GetImageCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void GetImageAsync(int id) {
-            this.GetImageAsync(id, null);
-        }
-        
-        public void GetImageAsync(int id, object userState) {
-            if ((this.onBeginGetImageDelegate == null)) {
-                this.onBeginGetImageDelegate = new BeginOperationDelegate(this.OnBeginGetImage);
-            }
-            if ((this.onEndGetImageDelegate == null)) {
-                this.onEndGetImageDelegate = new EndOperationDelegate(this.OnEndGetImage);
-            }
-            if ((this.onGetImageCompletedDelegate == null)) {
-                this.onGetImageCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetImageCompleted);
-            }
-            base.InvokeAsync(this.onBeginGetImageDelegate, new object[] {
-                        id}, this.onEndGetImageDelegate, this.onGetImageCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PhoneImage.ImageReference.IImageService.BeginGetHouse(int id, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetHouse(id, callback, asyncState);
+        System.IAsyncResult PhoneImage.ImageReference.IImageService.BeginGetHouse(int index, System.Uri url, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetHouse(index, url, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -340,8 +205,9 @@ namespace PhoneImage.ImageReference {
         }
         
         private System.IAsyncResult OnBeginGetHouse(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int id = ((int)(inValues[0]));
-            return ((PhoneImage.ImageReference.IImageService)(this)).BeginGetHouse(id, callback, asyncState);
+            int index = ((int)(inValues[0]));
+            System.Uri url = ((System.Uri)(inValues[1]));
+            return ((PhoneImage.ImageReference.IImageService)(this)).BeginGetHouse(index, url, callback, asyncState);
         }
         
         private object[] OnEndGetHouse(System.IAsyncResult result) {
@@ -357,11 +223,11 @@ namespace PhoneImage.ImageReference {
             }
         }
         
-        public void GetHouseAsync(int id) {
-            this.GetHouseAsync(id, null);
+        public void GetHouseAsync(int index, System.Uri url) {
+            this.GetHouseAsync(index, url, null);
         }
         
-        public void GetHouseAsync(int id, object userState) {
+        public void GetHouseAsync(int index, System.Uri url, object userState) {
             if ((this.onBeginGetHouseDelegate == null)) {
                 this.onBeginGetHouseDelegate = new BeginOperationDelegate(this.OnBeginGetHouse);
             }
@@ -372,7 +238,8 @@ namespace PhoneImage.ImageReference {
                 this.onGetHouseCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetHouseCompleted);
             }
             base.InvokeAsync(this.onBeginGetHouseDelegate, new object[] {
-                        id}, this.onEndGetHouseDelegate, this.onGetHouseCompletedDelegate, userState);
+                        index,
+                        url}, this.onEndGetHouseDelegate, this.onGetHouseCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -472,8 +339,8 @@ namespace PhoneImage.ImageReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void PhoneImage.ImageReference.IImageService.Enddiscard(System.IAsyncResult result) {
-            base.Channel.Enddiscard(result);
+        bool PhoneImage.ImageReference.IImageService.Enddiscard(System.IAsyncResult result) {
+            return base.Channel.Enddiscard(result);
         }
         
         private System.IAsyncResult OnBegindiscard(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -483,14 +350,15 @@ namespace PhoneImage.ImageReference {
         }
         
         private object[] OnEnddiscard(System.IAsyncResult result) {
-            ((PhoneImage.ImageReference.IImageService)(this)).Enddiscard(result);
-            return null;
+            bool retVal = ((PhoneImage.ImageReference.IImageService)(this)).Enddiscard(result);
+            return new object[] {
+                    retVal};
         }
         
         private void OndiscardCompleted(object state) {
             if ((this.discardCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.discardCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+                this.discardCompleted(this, new discardCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
@@ -589,34 +457,10 @@ namespace PhoneImage.ImageReference {
                     base(client) {
             }
             
-            public System.IAsyncResult BeginDoWork(System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[0];
-                System.IAsyncResult _result = base.BeginInvoke("DoWork", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public double EndDoWork(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                double _result = ((double)(base.EndInvoke("DoWork", _args, result)));
-                return _result;
-            }
-            
-            public System.IAsyncResult BeginGetImage(int id, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = id;
-                System.IAsyncResult _result = base.BeginInvoke("GetImage", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public byte[] EndGetImage(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                byte[] _result = ((byte[])(base.EndInvoke("GetImage", _args, result)));
-                return _result;
-            }
-            
-            public System.IAsyncResult BeginGetHouse(int id, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = id;
+            public System.IAsyncResult BeginGetHouse(int index, System.Uri url, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = index;
+                _args[1] = url;
                 System.IAsyncResult _result = base.BeginInvoke("GetHouse", _args, callback, asyncState);
                 return _result;
             }
@@ -660,9 +504,10 @@ namespace PhoneImage.ImageReference {
                 return _result;
             }
             
-            public void Enddiscard(System.IAsyncResult result) {
+            public bool Enddiscard(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                base.EndInvoke("discard", _args, result);
+                bool _result = ((bool)(base.EndInvoke("discard", _args, result)));
+                return _result;
             }
         }
     }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerGUI));
             System.Windows.Forms.Label idLabel;
             System.Windows.Forms.Label typeLabel;
             System.Windows.Forms.Label addressLabel;
@@ -39,6 +38,7 @@
             System.Windows.Forms.Label priceLabel;
             System.Windows.Forms.Label stateLabel;
             System.Windows.Forms.Label imageLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerGUI));
             this.propertiesBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.propertiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -96,6 +96,87 @@
             ((System.ComponentModel.ISupportInitialize)(this.users_PropertiesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).BeginInit();
             this.SuspendLayout();
+            // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Location = new System.Drawing.Point(36, 97);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new System.Drawing.Size(23, 17);
+            idLabel.TabIndex = 19;
+            idLabel.Text = "id:";
+            // 
+            // typeLabel
+            // 
+            typeLabel.AutoSize = true;
+            typeLabel.Location = new System.Drawing.Point(36, 125);
+            typeLabel.Name = "typeLabel";
+            typeLabel.Size = new System.Drawing.Size(39, 17);
+            typeLabel.TabIndex = 21;
+            typeLabel.Text = "type:";
+            // 
+            // addressLabel
+            // 
+            addressLabel.AutoSize = true;
+            addressLabel.Location = new System.Drawing.Point(36, 156);
+            addressLabel.Name = "addressLabel";
+            addressLabel.Size = new System.Drawing.Size(63, 17);
+            addressLabel.TabIndex = 23;
+            addressLabel.Text = "address:";
+            // 
+            // cityLabel
+            // 
+            cityLabel.AutoSize = true;
+            cityLabel.Location = new System.Drawing.Point(36, 184);
+            cityLabel.Name = "cityLabel";
+            cityLabel.Size = new System.Drawing.Size(33, 17);
+            cityLabel.TabIndex = 25;
+            cityLabel.Text = "city:";
+            // 
+            // bedroom_no_Label
+            // 
+            bedroom_no_Label.AutoSize = true;
+            bedroom_no_Label.Location = new System.Drawing.Point(36, 212);
+            bedroom_no_Label.Name = "bedroom_no_Label";
+            bedroom_no_Label.Size = new System.Drawing.Size(92, 17);
+            bedroom_no_Label.TabIndex = 27;
+            bedroom_no_Label.Text = "bedroom no :";
+            // 
+            // bathroom_no_Label
+            // 
+            bathroom_no_Label.AutoSize = true;
+            bathroom_no_Label.Location = new System.Drawing.Point(36, 240);
+            bathroom_no_Label.Name = "bathroom_no_Label";
+            bathroom_no_Label.Size = new System.Drawing.Size(96, 17);
+            bathroom_no_Label.TabIndex = 29;
+            bathroom_no_Label.Text = "bathroom no :";
+            // 
+            // priceLabel
+            // 
+            priceLabel.AutoSize = true;
+            priceLabel.Location = new System.Drawing.Point(36, 268);
+            priceLabel.Name = "priceLabel";
+            priceLabel.Size = new System.Drawing.Size(43, 17);
+            priceLabel.TabIndex = 31;
+            priceLabel.Text = "price:";
+            // 
+            // stateLabel
+            // 
+            stateLabel.AutoSize = true;
+            stateLabel.Location = new System.Drawing.Point(36, 296);
+            stateLabel.Name = "stateLabel";
+            stateLabel.Size = new System.Drawing.Size(43, 17);
+            stateLabel.TabIndex = 33;
+            stateLabel.Text = "state:";
+            // 
+            // imageLabel
+            // 
+            imageLabel.AutoSize = true;
+            imageLabel.Location = new System.Drawing.Point(36, 324);
+            imageLabel.Name = "imageLabel";
+            imageLabel.Size = new System.Drawing.Size(50, 17);
+            imageLabel.TabIndex = 35;
+            imageLabel.Text = "image:";
             // 
             // propertiesBindingNavigator
             // 
@@ -328,15 +409,6 @@
             this.dataGridViewTextBoxColumn4.HeaderText = "url";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
-            // idLabel
-            // 
-            idLabel.AutoSize = true;
-            idLabel.Location = new System.Drawing.Point(36, 97);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(23, 17);
-            idLabel.TabIndex = 19;
-            idLabel.Text = "id:";
-            // 
             // idTextBox
             // 
             this.idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "id", true));
@@ -345,32 +417,18 @@
             this.idTextBox.Size = new System.Drawing.Size(121, 22);
             this.idTextBox.TabIndex = 20;
             // 
-            // typeLabel
-            // 
-            typeLabel.AutoSize = true;
-            typeLabel.Location = new System.Drawing.Point(36, 125);
-            typeLabel.Name = "typeLabel";
-            typeLabel.Size = new System.Drawing.Size(39, 17);
-            typeLabel.TabIndex = 21;
-            typeLabel.Text = "type:";
-            // 
             // typeComboBox
             // 
             this.typeComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "type", true));
             this.typeComboBox.FormattingEnabled = true;
+            this.typeComboBox.Items.AddRange(new object[] {
+            "House",
+            "Castle",
+            "Flat"});
             this.typeComboBox.Location = new System.Drawing.Point(138, 122);
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(121, 24);
             this.typeComboBox.TabIndex = 22;
-            // 
-            // addressLabel
-            // 
-            addressLabel.AutoSize = true;
-            addressLabel.Location = new System.Drawing.Point(36, 156);
-            addressLabel.Name = "addressLabel";
-            addressLabel.Size = new System.Drawing.Size(63, 17);
-            addressLabel.TabIndex = 23;
-            addressLabel.Text = "address:";
             // 
             // addressTextBox
             // 
@@ -380,15 +438,6 @@
             this.addressTextBox.Size = new System.Drawing.Size(121, 22);
             this.addressTextBox.TabIndex = 24;
             // 
-            // cityLabel
-            // 
-            cityLabel.AutoSize = true;
-            cityLabel.Location = new System.Drawing.Point(36, 184);
-            cityLabel.Name = "cityLabel";
-            cityLabel.Size = new System.Drawing.Size(33, 17);
-            cityLabel.TabIndex = 25;
-            cityLabel.Text = "city:";
-            // 
             // cityTextBox
             // 
             this.cityTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "city", true));
@@ -396,15 +445,6 @@
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(121, 22);
             this.cityTextBox.TabIndex = 26;
-            // 
-            // bedroom_no_Label
-            // 
-            bedroom_no_Label.AutoSize = true;
-            bedroom_no_Label.Location = new System.Drawing.Point(36, 212);
-            bedroom_no_Label.Name = "bedroom_no_Label";
-            bedroom_no_Label.Size = new System.Drawing.Size(92, 17);
-            bedroom_no_Label.TabIndex = 27;
-            bedroom_no_Label.Text = "bedroom no :";
             // 
             // bedroom_no_TextBox
             // 
@@ -414,15 +454,6 @@
             this.bedroom_no_TextBox.Size = new System.Drawing.Size(121, 22);
             this.bedroom_no_TextBox.TabIndex = 28;
             // 
-            // bathroom_no_Label
-            // 
-            bathroom_no_Label.AutoSize = true;
-            bathroom_no_Label.Location = new System.Drawing.Point(36, 240);
-            bathroom_no_Label.Name = "bathroom_no_Label";
-            bathroom_no_Label.Size = new System.Drawing.Size(96, 17);
-            bathroom_no_Label.TabIndex = 29;
-            bathroom_no_Label.Text = "bathroom no :";
-            // 
             // bathroom_no_TextBox
             // 
             this.bathroom_no_TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "bathroom no_", true));
@@ -430,15 +461,6 @@
             this.bathroom_no_TextBox.Name = "bathroom_no_TextBox";
             this.bathroom_no_TextBox.Size = new System.Drawing.Size(121, 22);
             this.bathroom_no_TextBox.TabIndex = 30;
-            // 
-            // priceLabel
-            // 
-            priceLabel.AutoSize = true;
-            priceLabel.Location = new System.Drawing.Point(36, 268);
-            priceLabel.Name = "priceLabel";
-            priceLabel.Size = new System.Drawing.Size(43, 17);
-            priceLabel.TabIndex = 31;
-            priceLabel.Text = "price:";
             // 
             // priceTextBox
             // 
@@ -448,15 +470,6 @@
             this.priceTextBox.Size = new System.Drawing.Size(121, 22);
             this.priceTextBox.TabIndex = 32;
             // 
-            // stateLabel
-            // 
-            stateLabel.AutoSize = true;
-            stateLabel.Location = new System.Drawing.Point(36, 296);
-            stateLabel.Name = "stateLabel";
-            stateLabel.Size = new System.Drawing.Size(43, 17);
-            stateLabel.TabIndex = 33;
-            stateLabel.Text = "state:";
-            // 
             // stateTextBox
             // 
             this.stateTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "state", true));
@@ -464,15 +477,6 @@
             this.stateTextBox.Name = "stateTextBox";
             this.stateTextBox.Size = new System.Drawing.Size(121, 22);
             this.stateTextBox.TabIndex = 34;
-            // 
-            // imageLabel
-            // 
-            imageLabel.AutoSize = true;
-            imageLabel.Location = new System.Drawing.Point(36, 324);
-            imageLabel.Name = "imageLabel";
-            imageLabel.Size = new System.Drawing.Size(50, 17);
-            imageLabel.TabIndex = 35;
-            imageLabel.Text = "image:";
             // 
             // imageTextBox
             // 

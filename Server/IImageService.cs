@@ -10,13 +10,7 @@ namespace CMOVServer {
   [ServiceContract]
   public interface IImageService {
     [OperationContract]
-    double DoWork();
-
-    [OperationContract]
-    byte[] GetImage(int id);
-
-    [OperationContract]
-    object[] GetHouse(int id);
+    object[] GetHouse(int index, Uri url);
 
     [OperationContract]
     String SetUrl(Uri url);
@@ -25,6 +19,6 @@ namespace CMOVServer {
     void reset(Uri uri);
 
     [OperationContract]
-    void discard(Uri url, int propId);
+    bool discard(Uri url, int propId);
   }
 }

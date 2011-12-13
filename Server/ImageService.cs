@@ -13,7 +13,7 @@ using System.Data;
 namespace CMOVServer {
   public class ImageService : IImageService {
     
-    static int index = 0;
+    
     Database1DataSet dataset = new Database1DataSet();
     Database1DataSetTableAdapters.PropertiesTableAdapter propsTA = new Database1DataSetTableAdapters.PropertiesTableAdapter();
     Database1DataSetTableAdapters.UsersTableAdapter usersTA = new Database1DataSetTableAdapters.UsersTableAdapter();
@@ -50,14 +50,9 @@ namespace CMOVServer {
 
     public void reset(Uri url)
     {
-        int id= (int)usersTA.GetIdByUrl(url.AbsoluteUri.ToString());
-        //se isto nao funcionar, por nao poder fazer overwrite,descomentar isto..
-       /* upTA.GetDataByUserId(id);
-        foreach (DataRow row in upTA.GetDataByUserId(id))
-        {
-            row.Delete();
-        }*/
-        foreach (DataRow row in dataset.Properties.Rows)
+        int id= (int)usersTA.GetIdByUrl(url.AbsoluteUri);
+
+        foreach (DataRow row in propsTA.GetData())
         {
             upTA.Insert(id, Convert.ToInt32(row["id"]));
         }
@@ -65,87 +60,51 @@ namespace CMOVServer {
         Console.WriteLine("Reset done to user " + id);
     }
 
-      public void discard(Uri url,int propId)
+      public bool discard(Uri url,int propId)
       {
-          upTA.GetDataUrlAndId((int)usersTA.GetIdByUrl(url.AbsoluteUri.ToString()), propId);
-          foreach(DataRow row in upTA.GetDataUrlAndId((int)usersTA.GetIdByUrl(url.AbsoluteUri.ToString()), propId)){
-              row.Delete();
-          }
+          int UId = Convert.ToInt32(usersTA.GetIdByUrl(url.AbsoluteUri));
+          int PId = Convert.ToInt32(upTA.GetDataByUserId(UId).Rows[propId]["idP"]);
+          upTA.Delete(UId, PId);
           upTA.Update(dataset.Users_Properties);
+          return true;
       }
 
-    public byte[] GetImage(int id) {
-      string fimage;
 
-      Console.WriteLine("GetImage(" + id + ") called");
-      switch (id) {
-        case 0:
-          fimage = "Images\\home1.png";
-          break;
-        case 1:
-          fimage = "Images\\home2.png";
-          break;
-        case 2:
-          fimage = "Images\\home3.png";
-          break;
-        case 3:
-          fimage = "Images\\home4.png";
-          break;
-        default:
-          fimage = "Images\\home5.png";
-          break;
-      }
-      
-      byte[] buf = File.ReadAllBytes(fimage);
-      return buf;
-    }
 
-    public object[] GetHouse(int id)
+    public object[] GetHouse(int index, Uri url)
     {
-        Console.WriteLine("GetHouse(index: " + index + " id: " + id+ ") called");
-        propsTA.Fill(dataset.Properties);
-        if (dataset.Properties.Rows.Count == 0)
+        
+
+        int idU = 0;
+        try
+        {
+            idU = (int)usersTA.GetIdByUrl(url.AbsoluteUri);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        
+        DataRowCollection rows = upTA.GetDataByUserId(idU).Rows;
+        DataRow dt;
+
+        if (rows.Count == 0)
         {
             Console.WriteLine("No cols in get house");
             return null;
         }
-        if (id == -1){
-            Console.WriteLine(dataset.Properties.Rows[0].ItemArray);
-            object[] auxArray = new object[dataset.Properties.Rows[0].ItemArray.Length+1];
-            dataset.Properties.Rows[0].ItemArray.CopyTo(auxArray, 0);
-            //adiciona a imagem ao array
-            auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1].ToString());
-            if (index + 1 == dataset.Properties.Rows.Count)
-                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 1;
-            else
-                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 0;
+        dt = propsTA.GetDataById(Convert.ToInt32(rows[index]["idP"])).Rows[0];
+        Console.WriteLine(dt.ItemArray);
+        object[] auxArray = new object[dt.ItemArray.Length+1];
+        dt.ItemArray.CopyTo(auxArray, 0);
+        //adiciona a imagem ao array
+        auxArray[dt.ItemArray.Length - 1] = File.ReadAllBytes(auxArray[dt.ItemArray.Length - 1].ToString());
+        if (index + 1 == rows.Count)
+            auxArray[dt.ItemArray.Length] = 1;
+        else
+            auxArray[dt.ItemArray.Length] = 0;
 
-            return auxArray;
-        }
-        if (id == 0){
-            Console.WriteLine(dataset.Properties.Rows[index +1].ItemArray);
-            object[] auxArray = new object[dataset.Properties.Rows[++index].ItemArray.Length + 1];
-            dataset.Properties.Rows[index].ItemArray.CopyTo(auxArray, 0);
-
-            auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1].ToString());
-            if (index + 1 == dataset.Properties.Rows.Count)
-                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 1;
-            else
-                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 0;
-            return auxArray;
-        }
-        else{
-            Console.WriteLine(dataset.Properties.Rows[index -1].ItemArray);
-            object[] auxArray = new object[dataset.Properties.Rows[--index].ItemArray.Length + 1];
-            dataset.Properties.Rows[index].ItemArray.CopyTo(auxArray, 0);
-
-            auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1] = File.ReadAllBytes(auxArray[dataset.Properties.Rows[index].ItemArray.Length - 1].ToString());
-            if (index + 1 == dataset.Properties.Rows.Count)
-                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 1;
-            else
-                auxArray[dataset.Properties.Rows[index].ItemArray.Length] = 0;
-            return auxArray;
-        }
+        return auxArray;
     }
 
     public Uri[] getUrls()
@@ -203,7 +162,7 @@ namespace CMOVServer {
         foreach (Uri url in urls)
         {
             Console.WriteLine("url: " + url);
-            //byte[] strBytes = PrepareToast();// PrepareTile();
+            
             HttpWebRequest sendNotificationRequest = (HttpWebRequest)WebRequest.Create(url);
             sendNotificationRequest.Method = "POST";
             sendNotificationRequest.Headers = new WebHeaderCollection();
@@ -237,7 +196,7 @@ namespace CMOVServer {
             string deviceConnectionStatus = response.Headers["X-DeviceConnectionStatus"];
             string notificationChannelStatus = response.Headers["X-SubscriptionStatus"];
 
-            Console.WriteLine("mandavir(" + response.StatusCode + " " + notificationChannelStatus + " " + notificationStatus + " " + deviceConnectionStatus + ") called");
+            Console.WriteLine("SendNotification(" + response.StatusCode + " " + notificationChannelStatus + " " + notificationStatus + " " + deviceConnectionStatus + ") called");
         }
     }
   }
