@@ -12,8 +12,8 @@ using System.Data;
 
 namespace CMOVServer {
   public class ImageService : IImageService {
-    
-    
+
+    static int counter = 0;
     Database1DataSet dataset = new Database1DataSet();
     Database1DataSetTableAdapters.PropertiesTableAdapter propsTA = new Database1DataSetTableAdapters.PropertiesTableAdapter();
     Database1DataSetTableAdapters.UsersTableAdapter usersTA = new Database1DataSetTableAdapters.UsersTableAdapter();
@@ -25,6 +25,7 @@ namespace CMOVServer {
 
     public String SetUrl(Uri url1)
     {
+        counter = 0;
         Console.WriteLine("SetUrl(" + url1 + ") called");
 
         if (url1 != null && usersTA.FindUrl(url1.AbsoluteUri.ToString()) == null)
@@ -130,14 +131,19 @@ namespace CMOVServer {
     {
         XNamespace wp = "WPNotification";
 
+        int counterAux = counter;
+        Console.WriteLine("Counter: " + counter + " counterAux: " + counterAux + " count: " + count);
+        counter += count;
+        Console.WriteLine("Counter: " + counter + " counterAux: " + counterAux + " count: " + count);
         return Encoding.UTF8.GetBytes(
             new XDocument(
                 new XDeclaration("1.0", "utf-8", "true")
                 , new XElement(wp + "Notification"
                     , new XElement(wp + "Tile"
                         , new XElement(wp + "BackgroundImage", img)
-                        , new XElement(wp + "Count", count)
+                        , new XElement(wp + "Count", count + counterAux)
                         , new XElement(wp + "Title", text)))).ToString());
+
     }
 
 
