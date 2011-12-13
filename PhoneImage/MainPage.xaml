@@ -9,6 +9,7 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
+    Background="AliceBlue"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
@@ -22,8 +23,8 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="PROPERTY VIEWER" Style="{StaticResource PhoneTextNormalStyle}"/>
-           <!-- <TextBlock x:Name="PageTitle" Text="viewer" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/> -->
+            <TextBlock x:Name="ApplicationTitle" Text="PROPERTY VIEWER" Style="{StaticResource PhoneFontFamilySemiBold}" FontWeight="Bold" Foreground="{x:Null}"></TextBlock>
+            <!-- <TextBlock x:Name="PageTitle" Text="viewer" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/> -->
         </StackPanel>
         <!--<ScrollViewer Margin="12,66,-12,12" Grid.RowSpan="2">-->
                 <!--ContentPanel - place additional content here-->
@@ -31,24 +32,28 @@
             <ScrollViewer>
                 <Grid>
                     <Image Height="400" HorizontalAlignment="Center" Margin="0,6,0,0" Name="imviewer" Stretch="Fill" VerticalAlignment="Top" Width="400" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="28,413,0,0" Name="cityLabel" Text="City:" VerticalAlignment="Top" Width="38" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="86,413,0,0" Name="cityTB" Text="City Name" VerticalAlignment="Top" Width="342" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="28,446,0,0" Name="priceLabel" Text="Price:" VerticalAlignment="Top" Width="52" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="86,446,0,0" Name="priceTB" Text="Price Number" VerticalAlignment="Top" Width="342" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="28,479,0,0" Name="AddressLabel" Text="Address:" VerticalAlignment="Top" Width="75" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="109,479,0,0" Name="addressTB" Text="Address Name" VerticalAlignment="Top" Width="342" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="28,512,0,144" Name="roomLabel" Text="Rooms:" VerticalAlignment="Top" Width="75" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="114,512,0,0" Name="roomTB" Text="Room No." VerticalAlignment="Top" Width="342" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="28,545,0,0" Name="bathLabel" Text="Bathrooms:" VerticalAlignment="Top" Width="120" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="153,545,0,0" Name="bathTB" Text="bath Name" VerticalAlignment="Top" Width="342" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="28,578,0,0" Name="stateLabel" Text="State:" VerticalAlignment="Top" Width="52" />
-                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="86,578,0,0" Name="stateTB" Text="state Name" VerticalAlignment="Top" Width="342" />
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="30,413,0,0" Name="cityLabel" Text="City:" VerticalAlignment="Top"/>
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="200,413,0,0" Name="cityTB" Text="City Name" VerticalAlignment="Top"/>
+                    <Rectangle Height="2"  HorizontalAlignment="Stretch" Margin="30,445,0,0" VerticalAlignment="Top" Fill="White" />
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="30,446,0,0" Name="priceLabel" Text="Price:" VerticalAlignment="Top"/>
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="200,446,0,0" Name="priceTB" Text="Price Number" VerticalAlignment="Top"/>
+                    <Rectangle Height="2"  HorizontalAlignment="Stretch" Margin="30,478,0,0" VerticalAlignment="Top" Fill="White" />
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="30,479,0,0" Name="AddressLabel" Text="Address:" VerticalAlignment="Top"/>
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="200,479,0,0" Name="addressTB" Text="Address Name" VerticalAlignment="Top" />
+                    <Rectangle Height="2"  HorizontalAlignment="Stretch" Margin="30,511,0,0" VerticalAlignment="Top" Fill="White" />
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="30,512,0,144" Name="roomLabel" Text="Rooms:" VerticalAlignment="Top" />
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="200,512,0,0" Name="roomTB" Text="Room No." VerticalAlignment="Top" />
+                    <Rectangle Height="2"  HorizontalAlignment="Stretch" Margin="30,544,0,0" VerticalAlignment="Top" Fill="White" />
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="30,545,0,0" Name="bathLabel" Text="Bathrooms:" VerticalAlignment="Top" />
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="200,545,0,0" Name="bathTB" Text="bath Name" VerticalAlignment="Top"  />
+                    <Rectangle Height="2"  HorizontalAlignment="Stretch" Margin="30,577,0,0" VerticalAlignment="Top" Fill="White" />
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="30,578,0,0" Name="stateLabel" Text="State:" VerticalAlignment="Top"  />
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="200,578,0,0" Name="stateTB" Text="state Name" VerticalAlignment="Top" />
                 </Grid>
             </ScrollViewer>
-            <Button Content="Back" Height="72" HorizontalAlignment="Left" IsEnabled="False" Margin="18,618,0,0" Name="button1" VerticalAlignment="Top" Width="130" Click="button1_Click" />
+                <Button Content="Back" Height="72" HorizontalAlignment="Left" IsEnabled="False" Margin="18,618,0,0" Name="button1" VerticalAlignment="Top" Width="130" Click="button1_Click" />
                 <Button Content="Next" Height="72" HorizontalAlignment="Right" Margin="0,618,28,0" Name="button2" VerticalAlignment="Top" Width="130" Click="button2_Click" />
                 <Button Content="Discard" Height="72" HorizontalAlignment="Center" Margin="153,618,163,0" Name="button3" VerticalAlignment="Top" Width="140" Click="button3_Click" />
-                
             </Grid>
         <!--</ScrollViewer>-->
     </Grid>
