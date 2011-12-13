@@ -191,7 +191,7 @@ namespace CMOVServer {
             {
                 requestStream.Write(strBytes, 0, strBytes.Length);
             }
-            HttpWebResponse response = (HttpWebResponse)sendNotificationRequest.GetResponse();
+            HttpWebResponse response = (HttpWebResponse)sendNotificationRequest.GetResponse(); 
             string notificationStatus = response.Headers["X-NotificationStatus"];
             string deviceConnectionStatus = response.Headers["X-DeviceConnectionStatus"];
             string notificationChannelStatus = response.Headers["X-SubscriptionStatus"];
