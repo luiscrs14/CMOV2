@@ -11,6 +11,7 @@ namespace CMOVServer
 {
     public partial class ServerGUI : Form
     {
+        ImageService imgserv = new ImageService();
         public ServerGUI()
         {
             InitializeComponent();
@@ -21,7 +22,15 @@ namespace CMOVServer
            
             this.Validate();
             this.propertiesBindingSource.MoveLast();
-            this.propertiesBindingSource.EndEdit();
+            try
+            {
+                this.propertiesBindingSource.EndEdit();
+            }
+            catch(NoNullAllowedException exception)
+            {
+
+                MessageBox.Show("Please fill in all fields ");
+            }
             DataTable recentChanges = ((Database1DataSet)this.propertiesBindingSource.DataSource).Properties.GetChanges(DataRowState.Added);
             String imageUrl = "";
             String city = "";
@@ -72,7 +81,7 @@ namespace CMOVServer
                 this.users_PropertiesTableAdapter = new Database1DataSetTableAdapters.Users_PropertiesTableAdapter();
                 this.users_PropertiesTableAdapter.Fill(database1DataSet.Users_Properties);
 
-                ImageService imgserv = new ImageService();
+                
                 byte[] tile = imgserv.PrepareTile(changes, city + " " + price + "€", imageUrl);
                 byte[] toast = imgserv.PrepareToast(city, price + "€");
                 imgserv.SendNotfication(1, tile);
@@ -96,6 +105,7 @@ namespace CMOVServer
         {
             OpenFileDialog openf = new OpenFileDialog();
             openf.Filter = "PNG files|*.png";
+            openf.InitialDirectory = Application.StartupPath + "\\Images";
             if (openf.ShowDialog() == DialogResult.OK)
             {
                 imageTextBox.Text = openf.FileName;

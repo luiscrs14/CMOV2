@@ -520,7 +520,7 @@ namespace CMOVServer {
                 base.Columns.Add(this.columnidU);
                 this.columnidP = new global::System.Data.DataColumn("idP", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnidP);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Users_PropertiesKey1", new global::System.Data.DataColumn[] {
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnidU,
                                 this.columnidP}, true));
                 this.columnidU.AllowDBNull = false;
@@ -1177,15 +1177,16 @@ namespace CMOVServer {
                 this.columntype.AllowDBNull = false;
                 this.columntype.MaxLength = 10;
                 this.columnaddress.AllowDBNull = false;
-                this.columnaddress.MaxLength = 10;
+                this.columnaddress.MaxLength = 100;
                 this.columncity.AllowDBNull = false;
-                this.columncity.MaxLength = 10;
+                this.columncity.MaxLength = 100;
                 this.columnbedroom_no_.AllowDBNull = false;
                 this.columnbathroom_no_.AllowDBNull = false;
                 this.columnprice.AllowDBNull = false;
                 this.columnstate.AllowDBNull = false;
                 this.columnstate.MaxLength = 10;
-                this.columnimage.MaxLength = 200;
+                this.columnimage.AllowDBNull = false;
+                this.columnimage.MaxLength = 1000;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1525,28 +1526,11 @@ namespace CMOVServer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string image {
                 get {
-                    try {
-                        return ((string)(this[this.tableProperties.imageColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'image\' in table \'Properties\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableProperties.imageColumn]));
                 }
                 set {
                     this[this.tableProperties.imageColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsimageNull() {
-                return this.IsNull(this.tableProperties.imageColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetimageNull() {
-                this[this.tableProperties.imageColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2693,8 +2677,7 @@ SELECT id, type, address, city, [bedroom no.], [bathroom no.], price, state, ima
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_state));
             }
             if ((Original_image == null)) {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Original_image");
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
@@ -2749,7 +2732,7 @@ SELECT id, type, address, city, [bedroom no.], [bathroom no.], price, state, ima
                 this.Adapter.InsertCommand.Parameters[6].Value = ((string)(state));
             }
             if ((image == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("image");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = ((string)(image));
@@ -2821,7 +2804,7 @@ SELECT id, type, address, city, [bedroom no.], [bathroom no.], price, state, ima
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(state));
             }
             if ((image == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("image");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(image));
@@ -2855,7 +2838,7 @@ SELECT id, type, address, city, [bedroom no.], [bathroom no.], price, state, ima
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_state));
             }
             if ((Original_image == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Original_image");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_image));

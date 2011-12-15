@@ -12,12 +12,11 @@ public class Server {
     {
         ServiceHost host = new ServiceHost(typeof(ImageService));
         host.Open();
-        Console.WriteLine("Server ready for requests. Press <CR> to terminate.");  
+        Console.WriteLine("Server ready for requests.");  
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
         Application.Run(new ServerGUI());
-        //Console.ReadLine();
-         host.Close();
+        host.Close();
         }
 
   

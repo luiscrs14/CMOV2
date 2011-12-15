@@ -28,8 +28,8 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Content="Enter" Height="72" HorizontalAlignment="Left" Margin="154,82,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" />
-            <Button Content="Reset" Height="72" HorizontalAlignment="Left" Margin="154,178,0,0" Name="button2" VerticalAlignment="Top" Width="160" Click="button2_Click" />
+            <Button Content="Enter" Height="72" HorizontalAlignment="Left" Margin="154,82,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="enter_Click" />
+            <Button Content="Reset" Height="72" HorizontalAlignment="Left" Margin="154,178,0,0" Name="button2" VerticalAlignment="Top" Width="160" Click="reset_Click" />
         </Grid>
     </Grid>
  

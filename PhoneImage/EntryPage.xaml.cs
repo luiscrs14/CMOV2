@@ -34,7 +34,6 @@ namespace PhoneImage
             };
             
             ShellTile st = ShellTile.ActiveTiles.ElementAt(0);
-            MessageBox.Show(ShellTile.ActiveTiles.Count().ToString());
             st.Update(sd);
             client = new ImageServiceClient();
 
@@ -43,36 +42,46 @@ namespace PhoneImage
             if (httpChannel != null)
             {
                 channelUri = httpChannel.ChannelUri;
+                client.SetUrlAsync(channelUri);
             }
             else
             {
                 httpChannel = new HttpNotificationChannel(channelName);
-                httpChannel.ChannelUriUpdated += OnChannelUriUpdated;
                 httpChannel.ErrorOccurred += OnErrorOccurred;
                 httpChannel.Open();
                 channelUri = httpChannel.ChannelUri;
 
             }
-            client.SetUrlAsync(channelUri);
-            MessageBox.Show("url: " + channelUri);
+            httpChannel.ChannelUriUpdated += OnChannelUriUpdated;
+            client.resetCompleted += OnResetCompleted;
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void enter_Click(object sender, RoutedEventArgs e)
         {
             
             NavigationService.Navigate(new Uri("/MainPage.xaml?uri=" + channelUri.AbsoluteUri, UriKind.Relative));
         }
 
-        private void button2_Click(object sender, RoutedEventArgs e)
+        private void reset_Click(object sender, RoutedEventArgs e)
         {
             //reset dos descartados
             client.resetAsync(channelUri);
+        }
+
+        
+        void OnResetCompleted(object sender, resetCompletedEventArgs e)
+        {
+            if (e.Result == true)
+                MessageBox.Show("Reset successful");
+            else
+                MessageBox.Show("No houses to reset");
         }
 
 
         void OnChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
         {
             channelUri = e.ChannelUri;
+            
             httpChannel.BindToShellTile();
             httpChannel.BindToShellToast();
 
@@ -82,6 +91,7 @@ namespace PhoneImage
         }
         void OnErrorOccurred(object sender, NotificationChannelErrorEventArgs e)
         {
+            MessageBox.Show("Error connecting to MPNS");
             Debug.WriteLine("Error on communication with MPNS");
         }
 

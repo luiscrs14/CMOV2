@@ -49,7 +49,12 @@ namespace PhoneImage {
             object[] house = e.Result.ToArray<object>();
             //set text field information
             cityTB.Text = house[3].ToString();
-            priceTB.Text = house[6].ToString() + " €";
+            priceTB.Header = house[6].ToString() + " €";
+            stateTB.Text = house[7].ToString();
+            addressTB.Text = house[2].ToString();
+            roomTB.Text = house[3].ToString();
+            bathTB.Text = house[4].ToString();
+            typeTB.Text = house[1].ToString();
 
             //show image
             MemoryStream ms = new MemoryStream(house[8] as byte[]);

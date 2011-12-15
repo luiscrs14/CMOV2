@@ -30,9 +30,9 @@ namespace PhoneImage.ImageReference {
         string EndSetUrl(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImageService/reset", ReplyAction="http://tempuri.org/IImageService/resetResponse")]
-        System.IAsyncResult Beginreset(System.Uri uri, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult Beginreset(System.Uri url, System.AsyncCallback callback, object asyncState);
         
-        void Endreset(System.IAsyncResult result);
+        bool Endreset(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImageService/discard", ReplyAction="http://tempuri.org/IImageService/discardResponse")]
         System.IAsyncResult Begindiscard(System.Uri url, int propId, System.AsyncCallback callback, object asyncState);
@@ -78,6 +78,25 @@ namespace PhoneImage.ImageReference {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class resetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public resetCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }
@@ -186,7 +205,7 @@ namespace PhoneImage.ImageReference {
         
         public event System.EventHandler<SetUrlCompletedEventArgs> SetUrlCompleted;
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> resetCompleted;
+        public event System.EventHandler<resetCompletedEventArgs> resetCompleted;
         
         public event System.EventHandler<discardCompletedEventArgs> discardCompleted;
         
@@ -289,37 +308,38 @@ namespace PhoneImage.ImageReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PhoneImage.ImageReference.IImageService.Beginreset(System.Uri uri, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.Beginreset(uri, callback, asyncState);
+        System.IAsyncResult PhoneImage.ImageReference.IImageService.Beginreset(System.Uri url, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.Beginreset(url, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void PhoneImage.ImageReference.IImageService.Endreset(System.IAsyncResult result) {
-            base.Channel.Endreset(result);
+        bool PhoneImage.ImageReference.IImageService.Endreset(System.IAsyncResult result) {
+            return base.Channel.Endreset(result);
         }
         
         private System.IAsyncResult OnBeginreset(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            System.Uri uri = ((System.Uri)(inValues[0]));
-            return ((PhoneImage.ImageReference.IImageService)(this)).Beginreset(uri, callback, asyncState);
+            System.Uri url = ((System.Uri)(inValues[0]));
+            return ((PhoneImage.ImageReference.IImageService)(this)).Beginreset(url, callback, asyncState);
         }
         
         private object[] OnEndreset(System.IAsyncResult result) {
-            ((PhoneImage.ImageReference.IImageService)(this)).Endreset(result);
-            return null;
+            bool retVal = ((PhoneImage.ImageReference.IImageService)(this)).Endreset(result);
+            return new object[] {
+                    retVal};
         }
         
         private void OnresetCompleted(object state) {
             if ((this.resetCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.resetCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+                this.resetCompleted(this, new resetCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void resetAsync(System.Uri uri) {
-            this.resetAsync(uri, null);
+        public void resetAsync(System.Uri url) {
+            this.resetAsync(url, null);
         }
         
-        public void resetAsync(System.Uri uri, object userState) {
+        public void resetAsync(System.Uri url, object userState) {
             if ((this.onBeginresetDelegate == null)) {
                 this.onBeginresetDelegate = new BeginOperationDelegate(this.OnBeginreset);
             }
@@ -330,7 +350,7 @@ namespace PhoneImage.ImageReference {
                 this.onresetCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnresetCompleted);
             }
             base.InvokeAsync(this.onBeginresetDelegate, new object[] {
-                        uri}, this.onEndresetDelegate, this.onresetCompletedDelegate, userState);
+                        url}, this.onEndresetDelegate, this.onresetCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -484,16 +504,17 @@ namespace PhoneImage.ImageReference {
                 return _result;
             }
             
-            public System.IAsyncResult Beginreset(System.Uri uri, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult Beginreset(System.Uri url, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = uri;
+                _args[0] = url;
                 System.IAsyncResult _result = base.BeginInvoke("reset", _args, callback, asyncState);
                 return _result;
             }
             
-            public void Endreset(System.IAsyncResult result) {
+            public bool Endreset(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                base.EndInvoke("reset", _args, result);
+                bool _result = ((bool)(base.EndInvoke("reset", _args, result)));
+                return _result;
             }
             
             public System.IAsyncResult Begindiscard(System.Uri url, int propId, System.AsyncCallback callback, object asyncState) {

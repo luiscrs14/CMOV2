@@ -39,6 +39,7 @@
             System.Windows.Forms.Label stateLabel;
             System.Windows.Forms.Label imageLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerGUI));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.propertiesBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.propertiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -66,8 +67,6 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usersDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.typeComboBox = new System.Windows.Forms.ComboBox();
             this.addressTextBox = new System.Windows.Forms.TextBox();
@@ -75,8 +74,10 @@
             this.bedroom_no_TextBox = new System.Windows.Forms.TextBox();
             this.bathroom_no_TextBox = new System.Windows.Forms.TextBox();
             this.priceTextBox = new System.Windows.Forms.TextBox();
-            this.stateTextBox = new System.Windows.Forms.TextBox();
+            this.stateComboBox = new System.Windows.Forms.ComboBox();
             this.imageTextBox = new System.Windows.Forms.TextBox();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             idLabel = new System.Windows.Forms.Label();
             typeLabel = new System.Windows.Forms.Label();
             addressLabel = new System.Windows.Forms.Label();
@@ -100,83 +101,83 @@
             // idLabel
             // 
             idLabel.AutoSize = true;
-            idLabel.Location = new System.Drawing.Point(36, 97);
+            idLabel.Location = new System.Drawing.Point(35, 70);
             idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(23, 17);
+            idLabel.Size = new System.Drawing.Size(25, 17);
             idLabel.TabIndex = 19;
-            idLabel.Text = "id:";
+            idLabel.Text = "ID:";
             // 
             // typeLabel
             // 
             typeLabel.AutoSize = true;
-            typeLabel.Location = new System.Drawing.Point(36, 125);
+            typeLabel.Location = new System.Drawing.Point(35, 98);
             typeLabel.Name = "typeLabel";
-            typeLabel.Size = new System.Drawing.Size(39, 17);
+            typeLabel.Size = new System.Drawing.Size(44, 17);
             typeLabel.TabIndex = 21;
-            typeLabel.Text = "type:";
+            typeLabel.Text = "Type:";
             // 
             // addressLabel
             // 
             addressLabel.AutoSize = true;
-            addressLabel.Location = new System.Drawing.Point(36, 156);
+            addressLabel.Location = new System.Drawing.Point(35, 129);
             addressLabel.Name = "addressLabel";
-            addressLabel.Size = new System.Drawing.Size(63, 17);
+            addressLabel.Size = new System.Drawing.Size(64, 17);
             addressLabel.TabIndex = 23;
-            addressLabel.Text = "address:";
+            addressLabel.Text = "Address:";
             // 
             // cityLabel
             // 
             cityLabel.AutoSize = true;
-            cityLabel.Location = new System.Drawing.Point(36, 184);
+            cityLabel.Location = new System.Drawing.Point(35, 157);
             cityLabel.Name = "cityLabel";
-            cityLabel.Size = new System.Drawing.Size(33, 17);
+            cityLabel.Size = new System.Drawing.Size(35, 17);
             cityLabel.TabIndex = 25;
-            cityLabel.Text = "city:";
+            cityLabel.Text = "City:";
             // 
             // bedroom_no_Label
             // 
             bedroom_no_Label.AutoSize = true;
-            bedroom_no_Label.Location = new System.Drawing.Point(36, 212);
+            bedroom_no_Label.Location = new System.Drawing.Point(35, 185);
             bedroom_no_Label.Name = "bedroom_no_Label";
-            bedroom_no_Label.Size = new System.Drawing.Size(92, 17);
+            bedroom_no_Label.Size = new System.Drawing.Size(97, 17);
             bedroom_no_Label.TabIndex = 27;
-            bedroom_no_Label.Text = "bedroom no :";
+            bedroom_no_Label.Text = "Bedroom no. :";
             // 
             // bathroom_no_Label
             // 
             bathroom_no_Label.AutoSize = true;
-            bathroom_no_Label.Location = new System.Drawing.Point(36, 240);
+            bathroom_no_Label.Location = new System.Drawing.Point(35, 213);
             bathroom_no_Label.Name = "bathroom_no_Label";
-            bathroom_no_Label.Size = new System.Drawing.Size(96, 17);
+            bathroom_no_Label.Size = new System.Drawing.Size(101, 17);
             bathroom_no_Label.TabIndex = 29;
-            bathroom_no_Label.Text = "bathroom no :";
+            bathroom_no_Label.Text = "Bathroom no. :";
             // 
             // priceLabel
             // 
             priceLabel.AutoSize = true;
-            priceLabel.Location = new System.Drawing.Point(36, 268);
+            priceLabel.Location = new System.Drawing.Point(35, 241);
             priceLabel.Name = "priceLabel";
-            priceLabel.Size = new System.Drawing.Size(43, 17);
+            priceLabel.Size = new System.Drawing.Size(44, 17);
             priceLabel.TabIndex = 31;
-            priceLabel.Text = "price:";
+            priceLabel.Text = "Price:";
             // 
             // stateLabel
             // 
             stateLabel.AutoSize = true;
-            stateLabel.Location = new System.Drawing.Point(36, 296);
+            stateLabel.Location = new System.Drawing.Point(35, 269);
             stateLabel.Name = "stateLabel";
-            stateLabel.Size = new System.Drawing.Size(43, 17);
+            stateLabel.Size = new System.Drawing.Size(45, 17);
             stateLabel.TabIndex = 33;
-            stateLabel.Text = "state:";
+            stateLabel.Text = "State:";
             // 
             // imageLabel
             // 
             imageLabel.AutoSize = true;
-            imageLabel.Location = new System.Drawing.Point(36, 324);
+            imageLabel.Location = new System.Drawing.Point(35, 300);
             imageLabel.Name = "imageLabel";
             imageLabel.Size = new System.Drawing.Size(50, 17);
             imageLabel.TabIndex = 35;
-            imageLabel.Text = "image:";
+            imageLabel.Text = "Image:";
             // 
             // propertiesBindingNavigator
             // 
@@ -314,9 +315,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(314, 48);
+            this.button1.Location = new System.Drawing.Point(276, 297);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 23);
+            this.button1.Size = new System.Drawing.Size(121, 23);
             this.button1.TabIndex = 19;
             this.button1.Text = "Image Browse";
             this.button1.UseVisualStyleBackColor = true;
@@ -385,6 +386,11 @@
             // 
             // usersDataGridView
             // 
+            this.usersDataGridView.AllowUserToAddRows = false;
+            this.usersDataGridView.AllowUserToDeleteRows = false;
+            this.usersDataGridView.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.usersDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.usersDataGridView.AutoGenerateColumns = false;
             this.usersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.usersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -393,39 +399,30 @@
             this.usersDataGridView.DataSource = this.usersBindingSource;
             this.usersDataGridView.Location = new System.Drawing.Point(428, 125);
             this.usersDataGridView.Name = "usersDataGridView";
+            this.usersDataGridView.ReadOnly = true;
             this.usersDataGridView.RowTemplate.Height = 24;
             this.usersDataGridView.Size = new System.Drawing.Size(300, 220);
             this.usersDataGridView.TabIndex = 19;
             // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn3.HeaderText = "id";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "url";
-            this.dataGridViewTextBoxColumn4.HeaderText = "url";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
             // idTextBox
             // 
             this.idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "id", true));
-            this.idTextBox.Location = new System.Drawing.Point(138, 94);
+            this.idTextBox.Location = new System.Drawing.Point(137, 67);
             this.idTextBox.Name = "idTextBox";
+            this.idTextBox.ReadOnly = true;
             this.idTextBox.Size = new System.Drawing.Size(121, 22);
             this.idTextBox.TabIndex = 20;
             // 
             // typeComboBox
             // 
             this.typeComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "type", true));
+            this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeComboBox.FormattingEnabled = true;
             this.typeComboBox.Items.AddRange(new object[] {
-            "House",
             "Castle",
-            "Flat"});
-            this.typeComboBox.Location = new System.Drawing.Point(138, 122);
+            "Flat",
+            "House"});
+            this.typeComboBox.Location = new System.Drawing.Point(137, 95);
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(121, 24);
             this.typeComboBox.TabIndex = 22;
@@ -433,7 +430,7 @@
             // addressTextBox
             // 
             this.addressTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "address", true));
-            this.addressTextBox.Location = new System.Drawing.Point(138, 153);
+            this.addressTextBox.Location = new System.Drawing.Point(137, 126);
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(121, 22);
             this.addressTextBox.TabIndex = 24;
@@ -441,7 +438,7 @@
             // cityTextBox
             // 
             this.cityTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "city", true));
-            this.cityTextBox.Location = new System.Drawing.Point(138, 181);
+            this.cityTextBox.Location = new System.Drawing.Point(137, 154);
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(121, 22);
             this.cityTextBox.TabIndex = 26;
@@ -449,7 +446,7 @@
             // bedroom_no_TextBox
             // 
             this.bedroom_no_TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "bedroom no_", true));
-            this.bedroom_no_TextBox.Location = new System.Drawing.Point(138, 209);
+            this.bedroom_no_TextBox.Location = new System.Drawing.Point(137, 182);
             this.bedroom_no_TextBox.Name = "bedroom_no_TextBox";
             this.bedroom_no_TextBox.Size = new System.Drawing.Size(121, 22);
             this.bedroom_no_TextBox.TabIndex = 28;
@@ -457,7 +454,7 @@
             // bathroom_no_TextBox
             // 
             this.bathroom_no_TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "bathroom no_", true));
-            this.bathroom_no_TextBox.Location = new System.Drawing.Point(138, 237);
+            this.bathroom_no_TextBox.Location = new System.Drawing.Point(137, 210);
             this.bathroom_no_TextBox.Name = "bathroom_no_TextBox";
             this.bathroom_no_TextBox.Size = new System.Drawing.Size(121, 22);
             this.bathroom_no_TextBox.TabIndex = 30;
@@ -465,26 +462,48 @@
             // priceTextBox
             // 
             this.priceTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "price", true));
-            this.priceTextBox.Location = new System.Drawing.Point(138, 265);
+            this.priceTextBox.Location = new System.Drawing.Point(137, 238);
             this.priceTextBox.Name = "priceTextBox";
             this.priceTextBox.Size = new System.Drawing.Size(121, 22);
             this.priceTextBox.TabIndex = 32;
             // 
-            // stateTextBox
+            // stateComboBox
             // 
-            this.stateTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "state", true));
-            this.stateTextBox.Location = new System.Drawing.Point(138, 293);
-            this.stateTextBox.Name = "stateTextBox";
-            this.stateTextBox.Size = new System.Drawing.Size(121, 22);
-            this.stateTextBox.TabIndex = 34;
+            this.stateComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "state", true));
+            this.stateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stateComboBox.FormattingEnabled = true;
+            this.stateComboBox.Items.AddRange(new object[] {
+            "For sale",
+            "Sold"});
+            this.stateComboBox.Location = new System.Drawing.Point(137, 266);
+            this.stateComboBox.Name = "stateComboBox";
+            this.stateComboBox.Size = new System.Drawing.Size(121, 24);
+            this.stateComboBox.TabIndex = 34;
             // 
             // imageTextBox
             // 
             this.imageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.propertiesBindingSource, "image", true));
-            this.imageTextBox.Location = new System.Drawing.Point(138, 321);
+            this.imageTextBox.Location = new System.Drawing.Point(137, 297);
             this.imageTextBox.Name = "imageTextBox";
+            this.imageTextBox.ReadOnly = true;
             this.imageTextBox.Size = new System.Drawing.Size(121, 22);
             this.imageTextBox.TabIndex = 36;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn3.HeaderText = "id";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "url";
+            this.dataGridViewTextBoxColumn4.HeaderText = "url";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
             // 
             // ServerGUI
             // 
@@ -506,7 +525,7 @@
             this.Controls.Add(priceLabel);
             this.Controls.Add(this.priceTextBox);
             this.Controls.Add(stateLabel);
-            this.Controls.Add(this.stateTextBox);
+            this.Controls.Add(this.stateComboBox);
             this.Controls.Add(imageLabel);
             this.Controls.Add(this.imageTextBox);
             this.Controls.Add(this.usersDataGridView);
@@ -560,8 +579,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridView usersDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.ComboBox typeComboBox;
         private System.Windows.Forms.TextBox addressTextBox;
@@ -569,7 +586,9 @@
         private System.Windows.Forms.TextBox bedroom_no_TextBox;
         private System.Windows.Forms.TextBox bathroom_no_TextBox;
         private System.Windows.Forms.TextBox priceTextBox;
-        private System.Windows.Forms.TextBox stateTextBox;
+        private System.Windows.Forms.ComboBox stateComboBox;
         private System.Windows.Forms.TextBox imageTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }
